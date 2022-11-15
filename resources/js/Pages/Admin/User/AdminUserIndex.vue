@@ -14,7 +14,10 @@
           :sort="sorted"
           @toggle="(value) => (sorted = value)"
           :items="props.users.data"
+          :viewable="true"
+          viewlink="mange-user.show"
           :not-sortable="['roles', 'image']"
+          routes="manage-user.index"
         />
         <paginate
           v-if="props.users.data.length !== 0"

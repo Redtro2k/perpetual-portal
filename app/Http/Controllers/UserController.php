@@ -43,7 +43,11 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        return $this->customRedirectRoles($request->roles, $request->id);
+        if($this->user::find($request->id)->roles->count() == 1){
+            return redirect()->back()->with('warning', 'its already have a role');
+        }else{
+            return $this->customRedirectRoles($request->roles, $request->id);
+        }
 
     }
 
@@ -55,8 +59,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
-        return dd($id);
+        return Inertia::render('Admin/User/AdminUserShow');
     }
 
     /**

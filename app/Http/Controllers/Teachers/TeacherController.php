@@ -38,7 +38,9 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        //
+        return Inertia::render('Teacher/AdminTeacherShow', [
+            'user' => User::find($id)
+        ]);
     }
 
     /**
@@ -49,18 +51,26 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
+        //one errors fix after finishing the show route
         $user = $this->user->find($id);
         $school = $this->school->first();
         if(!$school){
             return redirect()->back()->with('warning', 'no school you cant update their roles');
-        }else{
-            $this->teacher->create([
-                'teacher_id' => $school->school_id . rand(2, 9999),
-                'school_uid' => $school->id,
-                'user_id' => $user->id
-            ]);
-            $user->assignRole('teacher');
-            return redirect()->route('manage-user.index')->with('success', ' '.$user->name.' updated roles as teacher');
+        }
+        else{
+            if(json_decode($user->roles()->pluck('name')) == ['teacher']){
+                return redirect()->back()->with('warning', 'already updated roles');
+            }else{
+                $this->teacher->create([
+                    'school_uid' => $school->id,
+                    'user_id' => $user->id
+                ]);
+                $user->update([
+                    'user_uid' => $school->school_id . rand(2, 9999)
+                ])->touch();
+                $user->assignRole('teacher');
+                return redirect()->route('teachers.show', $user->id)->with('success', ' '.$user->name.' updated roles as teacher');
+            }
         }
     }
 

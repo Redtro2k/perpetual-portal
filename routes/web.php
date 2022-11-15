@@ -22,6 +22,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::resource('/comment', CommentController::class, ['only' => ['show', 'destroy', 'index', 'store']]);
     Route::resource('/school', SchoolController::class, ['only' => ['index', 'store', 'update', 'edit', 'create', 'destroy']]);
     Route::get('/manage-user/{show_user?}', [UserController::class, 'index'])->name('manage-user.index');
-    Route::post('/mange-user/store', [UserController::class, 'store'])->name('manage-user.store');
-    Route::resource('/teachers', TeacherController::class, ['only' => ['store', 'index', 'create', 'edit']]);
+    Route::resource('/mange-user', UserController::class, ['only' => ['store', 'show']]);
+    Route::resource('/teachers', TeacherController::class, ['only' => ['store', 'index', 'create', 'edit', 'show']]);
 });
