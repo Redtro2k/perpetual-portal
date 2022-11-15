@@ -18,8 +18,8 @@
                           </p>
                         </div>
                         <div class="flex-shrink-0">
-                          <button v-if="user.name != $page.props.user.name" type="button" class="inline-flex items-center px-3 py-0.5 rounded-full bg-indigo-50 text-sm font-medium text-indigo-700 hover:bg-indigo-100">
-                            <PlusSmIcon class="-ml-1 mr-0.5 h-5 w-5 text-indigo-400" aria-hidden="true" />
+                          <button v-if="user.name != $page.props.user.name" type="button" class="inline-flex items-center px-3 py-0.5 rounded-full bg-indigo-50 text-sm font-medium text-jvdgreen hover:bg-indigo-100">
+                            <PlusSmIcon class="-ml-1 mr-0.5 h-5 w-5 text-jvgreen" aria-hidden="true" />
                             <span> Add </span>
                           </button>
                         </div>

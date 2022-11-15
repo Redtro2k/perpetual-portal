@@ -20,8 +20,8 @@
       "
       :class="
         isPrimary
-          ? 'text-white bg-indigo-600 hover:bg-indigo-700'
-          : 'text-indigo-600 bg-white hover:bg-gray-50'
+          ? 'text-white bg-jvgreen hover:bg-jvdgreen'
+          : 'text-jvdgreen bg-white hover:bg-gray-50'
       "
     >
       {{ value }}

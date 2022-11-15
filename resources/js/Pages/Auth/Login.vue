@@ -32,7 +32,7 @@
                 {{ " " }}
                 <a
                   href="#"
-                  class="font-medium text-indigo-600 hover:text-indigo-500"
+                  class="font-medium text-jvdgreen hover:text-jvgreen"
                 >
                   start with demo
                 </a>
@@ -107,7 +107,7 @@
                     <Link
                       v-if="canResetPassword"
                       :href="route('password.request')"
-                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                      class="font-medium text-jvdgreen hover:text-jvgreen"
                     >
                       Forgot your password?
                     </Link>

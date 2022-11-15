@@ -30,12 +30,10 @@ class School extends Model implements HasMedia
         ->event($event)
         ->log("This school was $event by :causer.name");
     }
-
     //via controllers
     public static function checkIfExist(){
         return static::all()->first() ? true : false;
     }
-
     public static function fetchSchool(){
         return static::all()->first();
     }

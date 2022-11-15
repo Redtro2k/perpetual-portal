@@ -4,31 +4,16 @@
     <template #content>
       <div class="min-h-full">
         <div class="mt-8">
-        <layout-card :cards="navigation" label="Overview" />
+          <layout-card :cards="navigation" label="Overview" />
         </div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
           <with-keyboard class="w-full lg:w-64" v-model="search" />
         </div>
-
-        <table-sortable
-          :sort="sorted"
-          @toggle="(value) => (sorted = value)"
-          :items="props.users.data"
-          :viewable="true"
-          viewlink="mange-user.show"
-          :not-sortable="['roles', 'image']"
-          routes="manage-user.index"
-        />
-        <paginate
-          v-if="props.users.data.length !== 0"
-          class="max-w-6xl mx-auto mt-8 px-4 sm:px-6 lg:px-8"
-          :links="props.users.links"
-          :from="props.users.from"
-          :to="props.users.to"
-          :result="props.users.total"
-          :responsiveNext="props.users.next_page_url"
-          :responsivePrevious="props.users.first_page_url"
-        />
+        <table-sortable :sort="sorted" @toggle="(value) => (sorted = value)" :items="props.users.data" :viewable="true"
+          viewlink="mange-user.show" :not-sortable="['roles', 'image']" routes="manage-user.index" />
+        <paginate v-if="props.users.data.length !== 0" class="max-w-6xl mx-auto mt-8 px-4 sm:px-6 lg:px-8"
+          :links="props.users.links" :from="props.users.from" :to="props.users.to" :result="props.users.total"
+          :responsiveNext="props.users.next_page_url" :responsivePrevious="props.users.first_page_url" />
       </div>
     </template>
   </user-layout>
@@ -44,13 +29,17 @@ import LayoutCard from "@/Custom/List/GridList/LayoutCard.vue";
 import loader from "@/Custom/Loading.vue";
 import ModalWithButton from "@/Custom/Overlays/Modals/CenteredWithWideButton.vue";
 import WarningAlert from "@/Custom/FeedBack/Alert/WithDescription.vue";
-import { ScaleIcon } from "@heroicons/vue/outline";
+import { ScaleIcon, UserIcon } from "@heroicons/vue/outline";
+import { Link } from '@inertiajs/inertia-vue3'
 
 const props = defineProps({
   users: Object,
   filters: String,
   show_user: Object,
   roles: Object,
+  students: Number,
+  teachers: Number,
+  record_user: Number
 });
 const TableSortable = defineAsyncComponent({
   loader: () => import("@/Custom/List/Tables/SortableTable/WithSortHeading.vue"),
@@ -61,9 +50,11 @@ const TableSortable = defineAsyncComponent({
 });
 //navigator
 const navigation = [
-  { name: "Teachers", href: "#", icon: ScaleIcon, records: "0" },
-  { name: "Students", href: "#", icon: ScaleIcon, records: "0" },
-  { name: "Courses", href: "#", icon: ScaleIcon, records: "0" },
+  { name: "Teachers", href: route('manage-user.download-all-teacher'), icon: UserIcon, records: props.teachers },
+  { name: "Students", href: route('manage-user.download-all-student'), icon: UserIcon, records: props.students },
+  { name: "Courses", href: "#", icon: UserIcon, records: "0" },
+  { name: "Users", href: route('manage-user.download-all-user'), icon: UserIcon, records: props.record_user },
+
 ];
 //search field
 const search = ref(props.filters);

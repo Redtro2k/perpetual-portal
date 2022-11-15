@@ -32,5 +32,5 @@ defineProps({
         type: String,
         default: () => null
     }
-})
+});
 </script>

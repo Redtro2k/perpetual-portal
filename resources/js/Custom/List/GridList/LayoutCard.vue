@@ -33,7 +33,7 @@
         </div>
         <div class="bg-gray-50 px-5 py-3">
           <div class="text-sm">
-            <a :href="card.href" class="font-medium text-cyan-700 hover:text-cyan-900">
+            <a :href="card.href" class="font-medium text-jvgreen hover:text-jvdgreen">
               View all
             </a>
           </div>

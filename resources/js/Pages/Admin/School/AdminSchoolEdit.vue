@@ -85,7 +85,7 @@
                 <button
                   type="submit"
                   :disabled="form.processing"
-                  class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                  class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-jvgreen hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen"
                 >
                   Update School
                 </button>
@@ -104,7 +104,7 @@ import UserLayout from "@/Layouts/UserLayout.vue";
 import DropdownSimple from "@/Custom/Forms/InputMenus/SimpleCustom.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import { ref, computed, watchEffect } from "vue";
-var phil = require("phil-reg-prov-mun-brgy");
+import phil from 'phil-reg-prov-mun-brgy'
 const props = defineProps({
   school: Object,
   school_image: String,
@@ -166,7 +166,7 @@ const handleFileRemoveFile = (error, e) => {
 };
 
 let submit = () => {
-  form.post(route("school.update", 39), {
+  form.post(route("school.update", props.school.id), {
     preserveScroll: true,
     forceFormData: true,
   });

@@ -4,6 +4,7 @@
     :canLogin="$page.props.checkLogged.canLogin"
     :canRegister="$page.props.checkLogged.canRegister"
   >
+
     <template #content>
       <div class="min-h-full flex">
         <div
@@ -24,7 +25,7 @@
                 {{ " " }}
                 <Link
                   :href="route('login')"
-                  class="font-medium text-indigo-600 hover:text-indigo-500"
+                  class="font-medium text-jvdgreen hover:text-jvgreen"
                 >
                   already registered?
                 </Link>
@@ -115,7 +116,7 @@
                         />
 
                         <div class="ml-2">
-                          <p class="font-medium text-indigo-600 hover:text-indigo-500">
+                          <p class="font-medium text-jvdgreen hover:text-jvgreen">
                             I agree to the
                             <Link
                               target="_blank"

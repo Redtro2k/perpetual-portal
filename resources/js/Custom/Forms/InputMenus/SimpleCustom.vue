@@ -1,3 +1,29 @@
+<script setup>
+    import { ref, computed } from "vue";
+    import {
+      Listbox,
+      ListboxButton,
+      ListboxLabel,
+      ListboxOption,
+      ListboxOptions,
+    } from "@headlessui/vue";
+    import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
+    const props = defineProps({
+      options: Object,
+      modelValue: [String],
+      placeholder: {
+        type: String,
+        default: () => "Select Option",
+      },
+      label: String,
+    });
+    const emits = defineEmits(["update:modelValue"]);
+    const selected = ref(props.options[0].id);
+    const name = computed(() => {
+      return props.options.find((e) => e.name === props.modelValue)?.name;
+    });
+    </script>
+
 <template>
   <Listbox
     as="div"
@@ -9,7 +35,7 @@
     </ListboxLabel>
     <div class="mt-1 relative">
       <ListboxButton
-        class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-jvgreen focus:border-jvgreen sm:text-sm"
       >
         <span class="block truncate" v-if="name">{{ name }}</span>
         <span class="block truncate text-gray-500" v-else>{{ props.placeholder }}</span>
@@ -26,7 +52,7 @@
         leave-to-class="opacity-0"
       >
         <ListboxOptions
-          class="z-10 overflow-auto absolute mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+          class="absolute right-0 z-[100] overflow-auto mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
         >
           <ListboxOption
             as="template"
@@ -37,7 +63,7 @@
           >
             <li
               :class="[
-                active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                active ? 'text-white bg-jvdgreen' : 'text-gray-900',
                 'cursor-default select-none relative py-2 pl-3 pr-9',
               ]"
             >
@@ -50,7 +76,7 @@
               <span
                 v-if="selected"
                 :class="[
-                  active ? 'text-white' : 'text-indigo-600',
+                  active ? 'text-white' : 'text-jvdgreen',
                   'absolute inset-y-0 right-0 flex items-center pr-4',
                 ]"
               >
@@ -63,29 +89,3 @@
     </div>
   </Listbox>
 </template>
-
-<script setup>
-import { ref, computed } from "vue";
-import {
-  Listbox,
-  ListboxButton,
-  ListboxLabel,
-  ListboxOption,
-  ListboxOptions,
-} from "@headlessui/vue";
-import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
-const props = defineProps({
-  options: Object,
-  modelValue: [String],
-  placeholder: {
-    type: String,
-    default: () => "Select Option",
-  },
-  label: String,
-});
-const emits = defineEmits(["update:modelValue"]);
-const selected = ref(props.options[0].id);
-const name = computed(() => {
-  return props.options.find((e) => e.name === props.modelValue)?.name;
-});
-</script>

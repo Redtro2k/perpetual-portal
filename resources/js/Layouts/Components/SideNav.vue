@@ -35,7 +35,7 @@
                   <input
                     id="search"
                     name="search"
-                    class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    class="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-jvgreen focus:border-jvgreen sm:text-sm"
                     placeholder="Search"
                     type="search"
                   />
@@ -46,7 +46,7 @@
           <div class="flex items-center md:absolute md:right-0 md:inset-y-0 lg:hidden">
             <!-- Mobile menu button -->
             <PopoverButton
-              class="-mx-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              class="-mx-2 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-jvgreen"
             >
               <span class="sr-only">Open menu</span>
               <MenuIcon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
@@ -55,18 +55,18 @@
           </div>
           <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
             <Link
-              href="#"
-              class="ml-5 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              :href="route('find-people')"
+              class="ml-5 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen"
             >
               <span class="sr-only">View notifications</span>
-              <BellIcon class="h-6 w-6" aria-hidden="true" />
+              <MailIcon class="h-6 w-6" aria-hidden="true" />
             </Link>
 
             <!-- Profile dropdown -->
             <Menu as="div" class="flex-shrink-0 relative ml-5">
               <div>
                 <MenuButton
-                  class="bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  class="bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen"
                 >
                   <span class="sr-only">Open user menu</span>
                   <img
@@ -110,7 +110,7 @@
             <button
               @click="showModal = true"
               v-if="$page.props.can.manage_super_admin"
-              class="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              class="ml-6 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-jvgreen hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen"
             >
               New Post
             </button>
@@ -136,10 +136,10 @@
               </span>
               <span
                 v-show="item.notify"
-                class="ml-2 inline-flex items-center px-2 rounded text-xs font-medium bg-indigo-100 text-indigo-800"
+                class="ml-2 inline-flex items-center px-2 rounded text-xs font-medium bg-indigo-100 text-jvgreen"
               >
                 <svg
-                  class="h-2 w-2 text-indigo-400"
+                  class="h-2 w-2 text-jvgreen"
                   fill="currentColor"
                   viewBox="0 0 8 8"
                 >
@@ -167,13 +167,12 @@
                 {{ $page.props.user.email }}
               </div>
             </div>
-            <button
-              type="button"
-              class="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            <Link
+              class="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen"
             >
               <span class="sr-only">View notifications</span>
-              <BellIcon class="h-6 w-6" aria-hidden="true" />
-            </button>
+              <MailIcon class="h-6 w-6" aria-hidden="true" />
+        </Link>
           </div>
           <div class="mt-3 max-w-3xl mx-auto px-2 space-y-1 sm:px-4">
             <Link
@@ -192,7 +191,7 @@
           <button
             v-if="$page.props.can.manage_super_admin"
             @click="open = true"
-            class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+            class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-jvgreen hover:bg-jvdgreen"
           >
             New Post
           </button>
@@ -214,7 +213,7 @@ import {
   PopoverPanel,
 } from "@headlessui/vue";
 import { SearchIcon } from "@heroicons/vue/solid";
-import { MenuIcon, XIcon, BellIcon } from "@heroicons/vue/outline";
+import { MenuIcon, XIcon, MailIcon } from "@heroicons/vue/outline";
 import loading from "@/Custom/Loading.vue";
 defineProps({
   navigation: Object,

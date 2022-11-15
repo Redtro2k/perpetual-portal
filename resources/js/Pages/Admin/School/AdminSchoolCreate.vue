@@ -71,8 +71,7 @@
             </div>
             <div>
               <div class="mt-1">
-                <label class="block text-sm font-medium text-gray-700"
-                  >Phone Number / Contact Number</label
+                <label class="block text-sm font-medium text-gray-700">Phone Number / Contact Number</label
                 >
                 <input-text placeholder="Phone number" v-model="form.contact" />
               </div>
@@ -80,7 +79,7 @@
             <div class="flex justify-end pt-8">
               <button
                 type="submit"
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-jvgreen hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen"
                 :disabled="form.processing"
               >
                 Create School

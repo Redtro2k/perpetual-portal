@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Post;
+use App\Http\Traits\AllUsersTrait;
+
 class DashboardController extends Controller
 {
+    use AllUsersTrait;
     public function index(){
         $posts = Post::with(['like','comment'])->latest()->paginate(2)->through(fn($page) => [
             'post_id' => $page->id,
@@ -25,7 +28,8 @@ class DashboardController extends Controller
             ])
         ]);
         return Inertia::render('Users/Dashboard', [
-            'posts' => $posts
+            'posts' => $posts,
+            'teachers' => $this->userTeacherSubject()
         ]);
     }
 }

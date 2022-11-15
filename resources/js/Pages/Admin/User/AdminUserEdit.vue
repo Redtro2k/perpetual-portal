@@ -20,7 +20,7 @@
                 promotted by
               </label>
               <div class="pt-1">
-                <span class="pr-3 bg-indigo-500 text-white rounded-r-sm">
+                <span class="pr-3 bg-jvgreen text-white rounded-r-sm">
                   <p class="bg-black px-2 inline font-semibold">#</p>
                   Superadministrator
                 </span>
@@ -29,7 +29,7 @@
             <div class="flex justify-end pt-8">
               <button
                 type="submit"
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-jvgreen hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen"
               >
                 Create School
               </button>
@@ -46,6 +46,7 @@ import CenterFormMainSection from "@/Shared/Layouts/WithCenterForm/WithCenterFor
 import { Link } from "@inertiajs/inertia-vue3";
 import { ArrowLeftIcon } from "@heroicons/vue/outline";
 import DropdownSimple from "@/Custom/Forms/InputMenus/SimpleCustom.vue";
+
 
 const roles = [
   { id: 1, name: "administrator" },

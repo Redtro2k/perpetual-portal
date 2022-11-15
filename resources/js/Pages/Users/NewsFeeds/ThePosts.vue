@@ -146,7 +146,7 @@
                               space-x-2
                             "
                             :method="CheckLike(post.like, $page.props.user.id) ? 'DELETE' : 'POST'"
-                            :class="CheckLike(post.like, $page.props.user.id) ? 'text-indigo-600' : 'text-gray-400 hover:text-gray-500'"
+                            :class="CheckLike(post.like, $page.props.user.id) ? 'text-jvgreen' : 'text-gray-400 hover:text-gray-500'"
                             :data="CheckLike(post.like, $page.props.user.id) ? { id: null} : { id: post.post_id}"
                             preserve-scroll
                             >

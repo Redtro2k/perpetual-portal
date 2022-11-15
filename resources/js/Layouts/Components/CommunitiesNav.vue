@@ -13,8 +13,8 @@
                         {{ item.name }}
                     </span>
                     <span v-show="item.notify"
-                        class="ml-2  inline-flex items-center px-2 rounded text-xs font-medium bg-indigo-100 text-indigo-800">
-                        <svg class="h-2 w-2 text-indigo-400" fill="currentColor" viewBox="0 0 8 8">
+                        class="ml-2  inline-flex items-center px-2 rounded text-xs font-medium bg-indigo-100 text-jvdgreen">
+                        <svg class="h-2 w-2 text-jvgreen" fill="currentColor" viewBox="0 0 8 8">
                             <circle cx="4" cy="4" r="3" />
                         </svg>
                         &nbsp;New
@@ -24,9 +24,10 @@
             </div>
             <div class="pt-10">
                 <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="communities-headline">
-                    My communities</p>
+                        {{label}}
+                    </p>
                 <div class="mt-3 space-y-2" aria-labelledby="communities-headline">
-                    <Link v-for="community in communities" :key="community.name" :href="community.href"
+                    <Link v-for="community in communities" :key="community.name" :href="route(community.href, community.route)"
                         class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
                     <span class="truncate">
                         {{ community.name }}
@@ -41,6 +42,7 @@
 import { Link } from "@inertiajs/inertia-vue3"
 defineProps({
     navigation: Object,
-    communities: Object
+    communities: Object,
+    label: String
 });
 </script>

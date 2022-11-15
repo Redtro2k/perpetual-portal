@@ -25,11 +25,11 @@
                                 <img class="hidden h-10 w-10 rounded-full sm:inline-block" :src="$page.props.user.profile_photo_url" alt="" />
                             <div class="w-full">
                                 <label for="comment" class="sr-only">Comment</label>
-                                <input type="text" v-model="form.comment" placeholder="comment here" class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 sm:text-sm" />
+                                <input type="text" v-model="form.comment" placeholder="comment here" class="block w-full rounded-md border-gray-300 shadow-sm focus:ring-jvgreen sm:text-sm" />
                                 <p class="text-sm text-red-500">{{ form.errors.comment }}</p>
                             </div>
                             <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
-                            <button type="submit" :disabled="form.processing" class="mt-3 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                            <button type="submit" :disabled="form.processing" class="mt-3 inline-flex w-full items-center justify-center rounded-md border border-transparent bg-jvgreen px-4 py-2 font-medium text-white shadow-sm hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-jvgreen focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                 <PaperAirplaneIcon class="h-5 w-5"/>
                             </button>
                         </form>

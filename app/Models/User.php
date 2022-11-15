@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\AvailableSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,6 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Activitylog\LogOptions;
 
@@ -50,5 +52,20 @@ class User extends Authenticatable
     }
     public function isOnline(){
         return Cache::has('user-is-online' . $this->id);
+    }
+    public function assignSubjects(){
+        return $this->belongsToMany(AvailableSubject::class)->withPivot('token');
+    }
+    public function section(){
+        return $this->belongsToMany(Section::class);
+    }
+
+    public function activities()
+    {
+        return $this->belongsToMany(Activities::class)->withPivot('scores', 'is_complete');
+    }
+
+    public function message(){
+        return $this->morphMany(Message::class, 'messageable');
     }
 }

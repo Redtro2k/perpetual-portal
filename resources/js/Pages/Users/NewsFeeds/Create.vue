@@ -43,7 +43,7 @@
               <p class="text-sm text-gray-500">These are setting to filter who will see your post.</p>
               <div class="mt-4 space-y-4">
                 <div class="flex items-center" v-for="privacy in privacies" :key="privacy">
-                  <input type="radio" name="privacy" v-model="form.audience" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" :value="privacy.value"/>
+                  <input type="radio" name="privacy" v-model="form.audience" class="focus:ring-jvgreen h-4 w-4 text-jvdgreen border-gray-300" :value="privacy.value"/>
                   <label class="ml-3 block text-sm font-medium text-gray-700"> {{privacy.label}} </label>
                 </div>
                 <div v-if="form.errors.audience" v-text="form.errors.audience" class="text-red-500 text-xs mt-1"></div>
@@ -55,8 +55,8 @@
               </div>
             </div>
             <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-              <button type="submit" :disabled="form.processing" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"  @click="$emit('close')">Publish Post</button>
-              <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm" @click="$emit('close')">Cancel</button>
+              <button type="submit" :disabled="form.processing" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-jvgreen text-base font-medium text-white hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen sm:col-start-2 sm:text-sm"  @click="$emit('close')">Publish Post</button>
+              <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen sm:mt-0 sm:col-start-1 sm:text-sm" @click="$emit('close')">Cancel</button>
             </div>
           </div>
         </TransitionChild>

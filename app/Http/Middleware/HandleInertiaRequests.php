@@ -7,6 +7,7 @@ use Inertia\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Schools\School;
+use Illuminate\Support\Facades\Gate;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -66,7 +67,11 @@ class HandleInertiaRequests extends Middleware
                 'success' => fn () => $request->session()->get('success')
             ],
             'can' => auth()->check() ? [
-                'manage_super_admin' => auth()->user()->can('manage_super_admin')
+                'manage_super_admin' => Gate::allows('manage_super_admin'),
+                'school_existed' => Gate::allows('school_exist'),
+                'admin_or_superadmin' => Gate::allows('manage_superadmin_or_admin'),
+                'manage_teacher' => Gate::allows('manage_teacher'),
+                'manage_student' => Gate::allows('manage_student')
             ] : false
         ]);
     }

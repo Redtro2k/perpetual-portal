@@ -1,19 +1,20 @@
 <template>
-    <Link
-        :href="route"
-        class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
-    >
+    <component :is="isLink ? 'Link' : 'button'"
+        :href="isLink ? '#' : routing"
+        class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-jvgreen hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-jvgreen"
+        type="button">
         {{label}}
-    </Link>
+    </component>
 </template>
 <script setup>
 import {Link} from '@inertiajs/inertia-vue3'
 defineProps({
     label: String,
-    route: String,
+    routing: String,
     isPost: {
         type: Boolean,
         default: () => false
-    }
+    },
+    isLink: Boolean
 })
 </script>

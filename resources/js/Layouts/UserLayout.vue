@@ -10,7 +10,7 @@
         class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid"
         :class="showSideNav ? 'lg:grid-cols-12 lg:gap-8' : 'lg:grid-cols-10 lg:gap-10'"
       >
-        <CommunitiesNavVue :navigation="navigation" :communities="communities" />
+        <CommunitiesNavVue :label="labelCommunities" :navigation="navigation" :communities="communities" />
         <main
           :class="showSideNav ? 'lg:col-span-4' : 'lg:col-span-6'"
           class="xl:col-span-6"
@@ -35,7 +35,7 @@ import { Link, Head, usePage } from "@inertiajs/inertia-vue3";
 import SideNav from "@/Layouts/Components/SideNav.vue";
 import Loading from "@/Custom/Loading.vue";
 import { computed } from "vue";
-import { defineAsyncComponent, ref, onUpdated } from "@vue/runtime-core";
+import { defineAsyncComponent, onMounted, onUpdated } from "@vue/runtime-core";
 const PeoplesNav = defineAsyncComponent({
     loader: () => import('./Components/PeoplesNav.vue'),
     loadingComponent: Loading,
@@ -57,7 +57,6 @@ const CommunitiesNavVue = defineAsyncComponent({
     errorComponent: "error...",
     timeout: 3000,
   });
-
 const props = defineProps({
   noContent: {
     type: Boolean,
@@ -108,12 +107,7 @@ const navigation = [
 ];
 
 
-const communities = [
-  { name: "Teachers", href: "#" },
-  { name: "Parents", href: "#" },
-  { name: "Friends", href: "#" },
-  { name: "Classmates", href: "#" },
-];
+const communities = [];
 const assignments = [
   {
     id: 1,
@@ -128,4 +122,38 @@ const assignments = [
   },
   // More posts...
 ];
+
+//add new links for cummunities
+const addCommunities = ((name, href, params = null) => {
+    if(params == null){
+        return communities.push({name: name, href: href})
+    }else{
+        return communities.push({name: name, href: href, route: params})
+    }
+});
+
+
+const labelCommunities = computed(() => {
+    if(usePage().props.value.can.admin_or_superadmin){
+        return 'Manage';
+    }else{
+        return 'Options';
+    }
+});
+
+onMounted(() => {
+    if(usePage().props.value.can.admin_or_superadmin){
+        addCommunities('Academic Year', 'academic-year.index');
+        addCommunities('Year Level', 'yearlevel.index');
+        addCommunities('Subjects', 'subject.index');
+        addCommunities('New User', 'new-account.create');
+        addCommunities('Migrate', 'sync-ay.index');
+    }
+    if(usePage().props.value.can.manage_teacher){
+        addCommunities('Subjects', 'teacher_subject.show', usePage().props.value.user.id);
+    }
+    if(usePage().props.value.can.manage_student){
+        addCommunities('Subjects/Modules', 'student-subject.show', usePage().props.value.user.id);
+    }
+  });
 </script>

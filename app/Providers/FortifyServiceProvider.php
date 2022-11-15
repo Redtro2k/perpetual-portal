@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Inertia\Inertia;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -35,6 +37,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+        Fortify::registerView(function () {
+            return Inertia::render('Auth/Register');
+        });
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;

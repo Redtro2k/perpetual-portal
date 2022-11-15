@@ -17,6 +17,20 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview/dist/filep
 import "filepond/dist/filepond.min.css";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
 
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
+//global components
+import WithDashBorder from '@/Custom/Feedback/EmptyStates/WithDashBorder.vue';
+import WithAccentBorder from '@/Custom/Feedback/Alert/WithAccentBorder.vue';
+import WithDismiss from '@/Custom/Feedback/Alert/WithDismiss.vue';
+import WithRight from '@/Custom/Feedback/Alert/WithOnRight.vue';
+import Paginate from "@/Custom/Navigation/Paginate/WithPageButton.vue";
+import InnerTable from '@/Custom/List/Tables/SortableTable/InnerTable.vue';
+
+
+
+
 const FilePond = vueFilePond(
     FilePondPluginFileValidateType,
     FilePondPluginImagePreview
@@ -37,6 +51,13 @@ createInertiaApp({
             .use(ZiggyVue, Ziggy)
             .component("QuillEditor", QuillEditor)
             .component("FilePond", FilePond)
+            .component('Datepicker', Datepicker)
+            .component('WithDashBorder', WithDashBorder) //empty states
+            .component('WithAccentBorder', WithAccentBorder) //warning pop up
+            .component('WithDismiss', WithDismiss) //successfully pop up
+            .component('Paginate', Paginate) // for paginating
+            .component('InnerTable', InnerTable) // for tables
+            .component('WithRight', WithRight) // with blue pop up
             .mount(el);
     },
 });
