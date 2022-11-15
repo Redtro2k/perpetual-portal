@@ -1,13 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
-import ActionMessage from '@/Components/ActionMessage.vue';
-import ActionSection from '@/Components/ActionSection.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import InputError from '@/Components/InputError.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import JetActionMessage from '@/Components/ActionMessage.vue';
+import JetActionSection from '@/Components/ActionSection.vue';
+import JetButton from '@/Components/Button.vue';
+import JetDialogModal from '@/Components/DialogModal.vue';
+import JetInput from '@/Components/Input.vue';
+import JetInputError from '@/Components/InputError.vue';
+import JetSecondaryButton from '@/Components/SecondaryButton.vue';
 
 defineProps({
     sessions: Array,
@@ -43,7 +43,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <ActionSection>
+    <JetActionSection>
         <template #title>
             Browser Sessions
         </template>
@@ -113,17 +113,17 @@ const closeModal = () => {
             </div>
 
             <div class="flex items-center mt-5">
-                <PrimaryButton @click="confirmLogout">
+                <JetButton @click="confirmLogout">
                     Log Out Other Browser Sessions
-                </PrimaryButton>
+                </JetButton>
 
-                <ActionMessage :on="form.recentlySuccessful" class="ml-3">
+                <JetActionMessage :on="form.recentlySuccessful" class="ml-3">
                     Done.
-                </ActionMessage>
+                </JetActionMessage>
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->
-            <DialogModal :show="confirmingLogout" @close="closeModal">
+            <JetDialogModal :show="confirmingLogout" @close="closeModal">
                 <template #title>
                     Log Out Other Browser Sessions
                 </template>
@@ -132,7 +132,7 @@ const closeModal = () => {
                     Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.
 
                     <div class="mt-4">
-                        <TextInput
+                        <JetInput
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
@@ -141,25 +141,25 @@ const closeModal = () => {
                             @keyup.enter="logoutOtherBrowserSessions"
                         />
 
-                        <InputError :message="form.errors.password" class="mt-2" />
+                        <JetInputError :message="form.errors.password" class="mt-2" />
                     </div>
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click="closeModal">
+                    <JetSecondaryButton @click="closeModal">
                         Cancel
-                    </SecondaryButton>
+                    </JetSecondaryButton>
 
-                    <PrimaryButton
+                    <JetButton
                         class="ml-3"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="logoutOtherBrowserSessions"
                     >
                         Log Out Other Browser Sessions
-                    </PrimaryButton>
+                    </JetButton>
                 </template>
-            </DialogModal>
+            </JetDialogModal>
         </template>
-    </ActionSection>
+    </JetActionSection>
 </template>

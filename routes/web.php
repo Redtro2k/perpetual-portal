@@ -3,33 +3,25 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\News\{CommentController, LikeController, PostController};
+use App\Http\Controllers\Schools\{SchoolController, CustomController};
+use App\Http\Controllers\{DashboardController, UserController};
+use App\Http\Controllers\Teachers\TeacherController;
+use App\Models\Schools\School;
+use Spatie\Activitylog\Models\Activity;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/like', LikeController::class, ['only' => ['store', 'destroy']]);
+    Route::resource('/post', PostController::class, ['only' => ['store', 'destroy']]);
+    Route::resource('/comment', CommentController::class, ['only' => ['show', 'destroy', 'index', 'store']]);
+    Route::resource('/school', SchoolController::class, ['only' => ['index', 'store', 'update', 'edit', 'create', 'destroy']]);
+    Route::get('/manage-user/{show_user?}', [UserController::class, 'index'])->name('manage-user.index');
+    Route::post('/mange-user/store', [UserController::class, 'store'])->name('manage-user.store');
+    Route::resource('/teachers', TeacherController::class, ['only' => ['store', 'index', 'create', 'edit']]);
 });

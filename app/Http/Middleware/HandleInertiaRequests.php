@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Schools\School;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -38,6 +41,33 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             //
+            'checkLogged' => [
+                'canLogin' => Route::has('login'),
+                'canRegister' => Route::has('register'),
+            ],
+            'config' => [
+                'appName' => config('app.name'),
+                'token' => csrf_token()
+            ],
+            'systemNotification' => [
+                'school' => School::all()->first() == null ? true : false
+            ],
+            'layout' => [
+                'online' => User::orderBy('last_seen', 'DESC')->limit(3)->get()->map(fn($u) => [
+                    'name' => $u->name,
+                    'email' => $u->email,
+                    'image' => $u->profile_photo_url,
+                    'online' => $u->isOnline()
+                ])
+            ],
+            'flash' => [
+                'message' => fn () => $request->session()->get('message'),
+                'warning' => fn () => $request->session()->get('warning'),
+                'success' => fn () => $request->session()->get('success')
+            ],
+            'can' => auth()->check() ? [
+                'manage_super_admin' => auth()->user()->can('manage_super_admin')
+            ] : false
         ]);
     }
 }

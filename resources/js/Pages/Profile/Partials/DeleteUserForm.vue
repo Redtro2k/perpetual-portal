@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/inertia-vue3';
-import ActionSection from '@/Components/ActionSection.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import InputError from '@/Components/InputError.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import JetActionSection from '@/Components/ActionSection.vue';
+import JetDialogModal from '@/Components/DialogModal.vue';
+import JetDangerButton from '@/Components/DangerButton.vue';
+import JetInput from '@/Components/Input.vue';
+import JetInputError from '@/Components/InputError.vue';
+import JetSecondaryButton from '@/Components/SecondaryButton.vue';
 
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref(null);
@@ -38,7 +38,7 @@ const closeModal = () => {
 </script>
 
 <template>
-    <ActionSection>
+    <JetActionSection>
         <template #title>
             Delete Account
         </template>
@@ -53,13 +53,13 @@ const closeModal = () => {
             </div>
 
             <div class="mt-5">
-                <DangerButton @click="confirmUserDeletion">
+                <JetDangerButton @click="confirmUserDeletion">
                     Delete Account
-                </DangerButton>
+                </JetDangerButton>
             </div>
 
             <!-- Delete Account Confirmation Modal -->
-            <DialogModal :show="confirmingUserDeletion" @close="closeModal">
+            <JetDialogModal :show="confirmingUserDeletion" @close="closeModal">
                 <template #title>
                     Delete Account
                 </template>
@@ -68,7 +68,7 @@ const closeModal = () => {
                     Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.
 
                     <div class="mt-4">
-                        <TextInput
+                        <JetInput
                             ref="passwordInput"
                             v-model="form.password"
                             type="password"
@@ -77,25 +77,25 @@ const closeModal = () => {
                             @keyup.enter="deleteUser"
                         />
 
-                        <InputError :message="form.errors.password" class="mt-2" />
+                        <JetInputError :message="form.errors.password" class="mt-2" />
                     </div>
                 </template>
 
                 <template #footer>
-                    <SecondaryButton @click="closeModal">
+                    <JetSecondaryButton @click="closeModal">
                         Cancel
-                    </SecondaryButton>
+                    </JetSecondaryButton>
 
-                    <DangerButton
+                    <JetDangerButton
                         class="ml-3"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click="deleteUser"
                     >
                         Delete Account
-                    </DangerButton>
+                    </JetDangerButton>
                 </template>
-            </DialogModal>
+            </JetDialogModal>
         </template>
-    </ActionSection>
+    </JetActionSection>
 </template>

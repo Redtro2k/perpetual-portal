@@ -1,6 +1,6 @@
 <script setup>
 import { computed, useSlots } from 'vue';
-import SectionTitle from './SectionTitle.vue';
+import JetSectionTitle from './SectionTitle.vue';
 
 defineEmits(['submitted']);
 
@@ -9,14 +9,14 @@ const hasActions = computed(() => !! useSlots().actions);
 
 <template>
     <div class="md:grid md:grid-cols-3 md:gap-6">
-        <SectionTitle>
+        <JetSectionTitle>
             <template #title>
                 <slot name="title" />
             </template>
             <template #description>
                 <slot name="description" />
             </template>
-        </SectionTitle>
+        </JetSectionTitle>
 
         <div class="mt-5 md:mt-0 md:col-span-2">
             <form @submit.prevent="$emit('submitted')">
