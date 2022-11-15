@@ -6,9 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use App\Models\Schools\School;
+use App\Models\teacher as Teacher;
 
 class TeacherController extends Controller
 {
+    public function __construct(School $school, Teacher $teacher, User $user)
+    {
+        $this->school = $school;
+        $this->teacher = $teacher;
+        $this->user = $user;
+    }
     public function index()
     {
     }
@@ -19,6 +27,7 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request->id);
     }
 
     /**
@@ -40,10 +49,19 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
-        return Inertia::render('Teacher/AdminTeacherEdit', [
-            'user' => User::find($id)->first()
-        ]);
+        $user = $this->user->find($id);
+        $school = $this->school->first();
+        if(!$school){
+            return redirect()->back()->with('warning', 'no school you cant update their roles');
+        }else{
+            $this->teacher->create([
+                'teacher_id' => $school->school_id . rand(2, 9999),
+                'school_uid' => $school->id,
+                'user_id' => $user->id
+            ]);
+            $user->assignRole('teacher');
+            return redirect()->route('manage-user.index')->with('success', ' '.$user->name.' updated roles as teacher');
+        }
     }
 
     /**

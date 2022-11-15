@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('province');
             $table->string('address');
             $table->string('contact');
+            $table->string('school_id')->unique();
             $table->nullableTimestamps();
         });
     }

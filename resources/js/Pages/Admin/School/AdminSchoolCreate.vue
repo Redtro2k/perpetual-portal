@@ -101,7 +101,7 @@ import { computed, ref, watchEffect } from "vue";
 import InputText from "@/Custom/Forms/InputGroups/InputText.vue";
 import DropdownLeft from "@/Custom/Forms/InputMenus/CustomWithCheckOnLeft.vue";
 import DropdownSimple from "@/Custom/Forms/InputMenus/SimpleCustom.vue";
-var phil = require("phil-reg-prov-mun-brgy");
+import phil from 'phil-reg-prov-mun-brgy'
 
 const getregion = ref();
 const getprovince = ref();

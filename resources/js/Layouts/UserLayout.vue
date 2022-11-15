@@ -101,11 +101,12 @@ const navigation = [
     name: "Manage User",
     href: `${route("manage-user.index")}`,
     icon: UsersIcon,
-    notify: isAdmin.value,
-    public: isAdmin.value,
+    notify: false,
+    public: usePage().props.value.can.manage_super_admin,
     current: route().current("manage-user*"),
   },
 ];
+
 
 const communities = [
   { name: "Teachers", href: "#" },

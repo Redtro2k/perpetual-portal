@@ -54,7 +54,8 @@ class SchoolController extends Controller
                 'region' => $attr['region'],
                 'province' => $attr['province'],
                 'address' => $attr['address'],
-                'contact' => $attr['contact']
+                'contact' => $attr['contact'],
+                'school_id' => rand(2, 99999)
             ])->addMediaFromRequest('image')
                 ->withResponsiveImages()
                 ->toMediaCollection('school');

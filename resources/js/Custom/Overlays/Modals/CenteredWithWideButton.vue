@@ -43,6 +43,7 @@
                 >
                   {{ Abbreviations }}. {{ labelName }}
                 </DialogTitle>
+
                 <p class="font-tight text-sm flex pl-2">
                   <IdentificationIcon class="h-4 w-4 text-gray-600" />
                   {{ props.show.email }} |
@@ -50,6 +51,8 @@
                 </p>
                 <div class="space-y-6 pt-2 h-80">
                   <div class="mt-1">
+                <warning-alert v-if="$page.props.flash.warning" :label="$page.props.flash.warning"/>
+
                     <img
                       :src="props.show.profile_photo_url"
                       class="inline-block h-20 w-20 rounded-full p-2"
@@ -75,6 +78,7 @@
                 :data="form"
                 as="button"
                 class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
+                preserve-state
               >
                 Update
               </Link>
@@ -108,6 +112,8 @@ import { Inertia } from "@inertiajs/inertia";
 import moment from "moment";
 import DropdownSimple from "@/Custom/Forms/InputMenus/SimpleCustom.vue";
 import { useForm, Link } from "@inertiajs/inertia-vue3";
+import WarningAlert from "@/Custom/FeedBack/Alert/WithDescription.vue";
+
 
 const props = defineProps({
   show: Object,
@@ -115,7 +121,8 @@ const props = defineProps({
 });
 const open = computed(() => !!props.show);
 const closeModal = () => {
-  Inertia.get(route("manage-user.index"), {});
+  Inertia.get(route("manage-user.index"), {}, {
+  });
 };
 watch(
   () => props.show,

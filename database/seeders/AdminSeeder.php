@@ -13,7 +13,8 @@ class AdminSeeder extends Seeder
         User::create([
             'name' => 'Darwin Llacuna',
             'email' => 'darwin@dev.com',
-            'password' => '$2y$10$s7bggUGJqXkTSZzMnysvgOVpEs.rJBgKL8hZHfpRd64.BtDylX4BC',
+            'gender' => 'male',
+            'password' => '$2y$10$s7bggUGJqXkTSZzMnysvgOVpEs.rJBgKL8hZHfpRd64.BtDylX4BC', //darwin123
         ]);
     }
 }

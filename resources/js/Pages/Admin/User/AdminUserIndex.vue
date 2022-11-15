@@ -4,7 +4,7 @@
     <template #content>
       <div class="min-h-full">
         <div class="mt-8">
-          <layout-card :cards="navigation" label="Overview" />
+        <layout-card :cards="navigation" label="Overview" />
         </div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
           <with-keyboard class="w-full lg:w-64" v-model="search" />
@@ -40,6 +40,7 @@ import Paginate from "@/Custom/Navigation/Paginate/WithPageButton.vue";
 import LayoutCard from "@/Custom/List/GridList/LayoutCard.vue";
 import loader from "@/Custom/Loading.vue";
 import ModalWithButton from "@/Custom/Overlays/Modals/CenteredWithWideButton.vue";
+import WarningAlert from "@/Custom/FeedBack/Alert/WithDescription.vue";
 import { ScaleIcon } from "@heroicons/vue/outline";
 
 const props = defineProps({

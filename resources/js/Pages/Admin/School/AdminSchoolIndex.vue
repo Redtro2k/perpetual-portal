@@ -109,7 +109,7 @@
               </div>
             </section>
           </div>
-          <section aria-labelledby="timeline-title" class="lg:col-start-3 lg:col-span-1">
+          <section v-if="$page.props.can.manage_super_admin" aria-labelledby="timeline-title" class="lg:col-start-3 lg:col-span-1">
             <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
               <h2 id="timeline-title" class="text-lg font-medium text-gray-900">
                 Activity
@@ -177,7 +177,7 @@ import { Link } from "@inertiajs/inertia-vue3";
 import { computed } from "@vue/runtime-core";
 import moment from "moment";
 import { PlusIcon, PencilAltIcon, XIcon } from "@heroicons/vue/solid";
-var phil = require("phil-reg-prov-mun-brgy");
+import phil from 'phil-reg-prov-mun-brgy'
 
 const props = defineProps({
   school: Object,
