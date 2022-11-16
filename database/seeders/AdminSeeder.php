@@ -17,6 +17,7 @@ class AdminSeeder extends Seeder
         Role::create(['name' => 'teacher']);
         $user = User::create([
             'name' => 'Darwin Llacuna',
+            'username' => 'admin',
             'email' => 'darwin@dev.com',
             'gender' => 'male',
             'password' => '$2y$10$s7bggUGJqXkTSZzMnysvgOVpEs.rJBgKL8hZHfpRd64.BtDylX4BC',

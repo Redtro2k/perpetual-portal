@@ -116,8 +116,7 @@
                                     <form-description title="Setting as super-administrator/Admin"
                                         description="this all of control all our system, including backup routine,schedule, for maintenance mode">
                                         <template #main>
-                                            <form-switch label="Maintenance Mode" :isOpen="isOpen"
-                                                @toggle="(value) => isOpen = value" />
+                                            <form-switch label="Maintenance Mode" v-model="isOpen"/>
                                             <form-button label="Maintenance Mode" href="post.store" />
                                         </template>
                                     </form-description>
