@@ -20,13 +20,7 @@
                             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
                                 Sign in to your account
                             </h2>
-                            <p class="mt-2 text-sm text-gray-600">
-                                Or
-                                {{ " " }}
-                                <a href="#" class="font-medium text-jvdgreen hover:text-jvgreen">
-                                    start with demo
-                                </a>
-                            </p>
+
                         </div>
 
                         <div class="mt-8">

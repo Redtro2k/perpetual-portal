@@ -69,6 +69,7 @@ let enableSave = () => {
 let submit = () => {
     form.post(route('question-answer.store'), {
         preserveScroll: true,
+        preserveState: false,
         onFinish: () => form.reset('question', 'answer', 'correct_answer'),
         onSuccess: () => form.reset('question', 'answer', 'correct_answer')
     })
@@ -79,6 +80,8 @@ let submit = () => {
     <user-layout title="Modules" no-content :showSideNav="false">
         <template #content>
             <main class="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
+                <WithAccentBorder class="my-4" label="once you created a question will not be editable, you delete then make a new"/>
+
                 <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
                     <TabGroup>
                         <aside class="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">

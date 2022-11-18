@@ -37,7 +37,7 @@
                                         </button>
                                     </Tab>
                                     <Tab as="template" v-slot="{ selected }">
-                                        <button :class="[
+                                        <button v-show="checkRole == 'administrator' ? true : false" :class="[
                                           selected
                                             ? 'bg-gray-50 text-jvdgreen hover:bg-white'
                                             : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
@@ -46,7 +46,7 @@
                                             <CogIcon :class="[
                                                 selected ? 'text-jvgreen' : 'text-gray-400 group-hover:text-gray-500', 'flex-shrink-0 -ml-1 mr-3 h-6 w-6'
                                             ]" />
-                                            {{checkRole}}
+                                            Backup
                                         </button>
                                     </Tab>
                                 </TabList>

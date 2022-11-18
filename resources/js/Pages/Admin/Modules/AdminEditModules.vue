@@ -230,7 +230,7 @@ let submit = () => {
                                                         </template>
                                                     </form-slot>
                                                 </div>
-                                                    <Radio class="pt-4" label="Not Centrilized" body="If you turn on it will post only to your handle sections" v-model="qae.isCentrilized" />
+                                                    <Radio v-show="$page.props.can.manage_teacher" class="pt-4" label="Not Centrilized" body="If you turn on it will post only to your handle sections" v-model="qae.isCentrilized" />
                                             </template>
                                             <template #footer>
                                                 <JetButton class="ml-4" :class="{ 'opacity-25': qae.processing }"

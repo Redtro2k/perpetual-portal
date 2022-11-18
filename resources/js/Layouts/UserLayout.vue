@@ -146,7 +146,9 @@ onMounted(() => {
         addCommunities('Year Level', 'yearlevel.index');
         addCommunities('Subjects', 'subject.index');
         addCommunities('New User', 'new-account.create');
-        addCommunities('Migrate', 'sync-ay.index');
+        if(usePage().props.value.can.admin_or_superadmin){
+            addCommunities('Migrate', 'sync-ay.index');
+        }
     }
     if(usePage().props.value.can.manage_teacher){
         addCommunities('Subjects', 'teacher_subject.show', usePage().props.value.user.id);

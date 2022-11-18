@@ -24,6 +24,9 @@ class QuestionAnswerController extends Controller
             'students_answer' => $this->getStudentScoresById($id)
         ]);
     }
+    public function isGivenUpdate(Request $request){
+        dd($request);
+    }
     public function viewScores(Request $request, $id)
     {
         return Inertia::render('Teacher/Quizzes/ActivityShow', [
@@ -33,7 +36,6 @@ class QuestionAnswerController extends Controller
             'user_id' => $id
         ]);
     }
-
     public function exportResult($id){
         return Excel::download(new AllQuestionAnswer($id), 'result.xlsx');
     }

@@ -29,7 +29,7 @@ const props = defineProps({
 const form = useForm({
     _method: !props.selected_subject ? 'POST' : 'PUT',
     name: props.selected_subject ? props.selected_subject.name : '',
-    value_units: props.selected_subject ? props.selected_subject.value_units.toString() : '',
+    value_units: props.selected_subject ? props.selected_subject.value_units.toString() : '0',
     images: [],
     description: props.selected_subject ? props.selected_subject.description.toString() : ''
 });
@@ -148,12 +148,13 @@ let submit = () => {
                                                     <form-input label="Subject Name" v-model="form.name"
                                                         :disabled="!$page.props.can.admin_or_superadmin" />
                                                 </div>
-                                                <div class="mt-6 grid grid-cols-4 gap-4">
+                                                <div v-show="false" class="mt-6 grid grid-cols-4 gap-4">
                                                     <form-input label="Value Units" v-model="form.value_units"
                                                         :disabled="!$page.props.can.admin_or_superadmin" />
                                                 </div>
                                                 <div class="py-4">
                                                     <template v-if="$page.props.can.admin_or_superadmin">
+                                                        <label for="first-name" class="block text-sm font-medium text-gray-700">Description</label>
                                                         <QuillEditor v-model:content="form.description"
                                                             contentType="html"
                                                             placeholder="description About this Subjects"

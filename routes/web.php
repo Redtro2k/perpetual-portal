@@ -90,6 +90,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::resource('/qae', QAEController::class, ['only' => ['store', 'destroy']]);
         Route::controller(QuestionAnswerController::class)->group(function() {
             Route::get('activities-result/{id}', 'exportResult')->name('activities-result.result');
+            Route::post('activity-deploy', 'isGivenUpdate')->name('deploy-activity');
         });
     });
 

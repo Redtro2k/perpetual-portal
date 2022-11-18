@@ -30,12 +30,7 @@
               <p class="mt-2 text-sm text-gray-600">
                 Or
                 {{ " " }}
-                <a
-                  href="#"
-                  class="font-medium text-jvdgreen hover:text-jvgreen"
-                >
-                  start with demo
-                </a>
+
               </p>
             </div>
 

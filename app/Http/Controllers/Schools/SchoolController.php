@@ -46,7 +46,7 @@ class SchoolController extends Controller
     public function store(SchoolRequest $request)
     {
         $attr = $request->validated();
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        if ($request->hasFile('image') && $request->file('image')) {
             $this->school->addActivity('created', auth()->user());
             $this->school->create([
                 'name' => $attr['name'],

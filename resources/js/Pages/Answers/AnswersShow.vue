@@ -23,7 +23,7 @@
                                               'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                         ]"
                                         />
-                                        Open
+                                        Options
                                         </button>
                                     </Tab>
                                     <Tab as="template" v-slot="{selected}" v-show="check_already_taken" v-for="(items, index) in props.questions" :key="items">
@@ -56,7 +56,7 @@
                                                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                                             <span class="flex-grow" v-html="is_completed != null ? [is_completed.is_complete == 1 ? is_completed.scores : 'waiting'] : 'waiting'"></span>
                                                             <span class="ml-4 flex-shrink-0">
-                                                                <Link :href="route('compute')" method="post" type="button" as="button" :data="{activities_id: current_id}" class="bg-white rounded-md font-medium text-jvdgreen hover:text-jvgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen">Finish</Link>
+                                                                <Link v-show="!is_completed" :href="route('compute')" method="post" type="button" as="button" :data="{activities_id: current_id}" class="bg-white rounded-md font-medium text-jvdgreen hover:text-jvgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen">Finish</Link>
                                                             </span>
                                                         </dd>
                                                     </div>
