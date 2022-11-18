@@ -37,7 +37,7 @@ trait AllModulesTrait
             'start' => $h->start,
             'due' => $h->due,
             'questions' => $h->questionAnswer->count(),
-            'checked' => $h->start <= Carbon::now() && $h->due >= Carbon::now(),
+            'checked' => $h->start >= Carbon::now() && $h->due >= Carbon::now(),
         ]);
     }
 }
