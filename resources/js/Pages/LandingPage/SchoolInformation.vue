@@ -2,7 +2,7 @@
     <GuestLayoutVue :canLogin="$page.props.checkLogged.canLogin" :canRegister="$page.props.checkLogged.canRegister">
         <!--School slogan-->
     <template #content>
-        <section class="h-screen w-auto pt-24 mb-10 p-10 sm:flex-1 lg:flex sm:justify-between bg-white shadow-lg">
+        <section class="h-screen w-auto pt-24 mb-10 p-10 sm:flex-1 lg:flex sm:justify-between shadow-lg">
             <div class="sm:w-auto lg:w-1/2 pl-20">
                 <h1 class="lg:text-7xl sm:text-2xl text-lg font-bold mb-5 text-jvgreen  ">Perpetual Help Academy of Palmera INC.</h1>
                 <p class="text-gray-500 text-lg">A school learning management system aims to provide a web-based management system. The system includes different functionalities for both teachers and students. Features for the teachers are interacting, Assigning/uploading activities, modules and assignments as well as receiving the progress of their students.</p>
@@ -40,8 +40,8 @@ Perpetual Help Academy of Palmera, Inc, have envisioned to provide the community
                 </div> -->
         </main>
         <!-- Clients Basic Information -->
-        <div class="h-56 w-auto bg-black text-gray-500 text-2xl text-center p-20">
-                    <p>" HElLo Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias possimus non nesciunt omnis magni libero quis officia, reiciendis minima quidem, ipsam dolorum dolore praesentium, doloremque excepturi? Dolorum obcaecati alias voluptatum."</p>
+        <div class="h-56 w-auto bg-black text-gray-300 text-2xl text-center p-20">
+                    <p>"Head Officers of Perpetual Help Academy of Palmera Incorporated"</p>
                 </div>
         <section class="h-auto bg-black p-10 lg:flex justify-evenly">
 
@@ -53,7 +53,7 @@ Perpetual Help Academy of Palmera, Inc, have envisioned to provide the community
                     <h3 class=" text-2xl">Mrs. Estelita Guevarra Antolin</h3>
                     <p class="text-jvgreen font-bold underline">FOUNDER</p>
                     <br>
-                    <p class="text-gray-300 text-sm">Hello everyone Im Justin and I produce Beautiful website designs</p>
+
                 </div>
             </div>
 
@@ -67,7 +67,7 @@ Perpetual Help Academy of Palmera, Inc, have envisioned to provide the community
                     <h3 class=" text-2xl">Mrs. Emily Rose Guevarra Antolin</h3>
                     <p class="text-jvgreen font-bold underline">CEO</p>
                     <br>
-                    <p  class="text-gray-300 text-sm">Hello everyone Im Justin and I produce Beautiful website designs</p>
+
                 </div>
             </div>
 
@@ -77,10 +77,10 @@ Perpetual Help Academy of Palmera, Inc, have envisioned to provide the community
                     <img  class="rounded-full bg-white h-40 w-40 m-auto" src=storage/CutieImages/principal.jpg alt="Principal images">
                 </div>
                 <div class=" text-center">
-                    <h3 class=" text-2xl">Mrs. Vivian</h3>
+                    <h3 class=" text-2xl">Mrs. Vivian G. Perez</h3>
                     <p class="text-jvgreen font-bold underline">PRINCIPAL</p>
                     <br>
-                    <p  class="text-gray-300 text-sm">Hello everyone Im Justin and I produce Beautiful website designs</p>
+
                 </div>
             </div>
 

@@ -9,7 +9,7 @@
       </div>
       <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
         <h1 class="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">Features</h1>
-        <p class="mt-6 max-w-3xl text-xl text-gray-300">Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames. Dui, amet, nec sit pulvinar.</p>
+        <!-- <p class="mt-6 max-w-3xl text-xl text-gray-300">Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames. Dui, amet, nec sit pulvinar.</p> -->
       </div>
     </div>
 
@@ -33,27 +33,27 @@
 </template>
 
 <script>
-import { NewspaperIcon, PhoneIcon, SupportIcon } from '@heroicons/vue/outline'
+import { NewspaperIcon, PhoneIcon, SupportIcon,GlobeAltIcon, FolderOpenIcon } from '@heroicons/vue/outline'
 const supportLinks = [
   {
-    name: 'Sales',
+    name: 'Modernized Learning Model',
     href: '#',
     description:
-      'Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.',
-    icon: PhoneIcon,
+      'This new learning model strengthens PHAPI’s existing blended learning mode that combines independent online learning at home via this learning management system.',
+    icon: GlobeAltIcon,
   },
   {
-    name: 'Technical Support',
+    name: 'Easy Access to Learning Modules',
     href: '#',
     description:
-      'Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.',
-    icon: SupportIcon,
+      'Students can study ahead, review past lessons, and watch instructional videos with a click or a tap of a button on any gadget.',
+    icon: FolderOpenIcon,
   },
   {
-    name: 'Media Inquiries',
+    name: 'Interactive Activities and Assessments',
     href: '#',
     description:
-      'Varius facilisi mauris sed sit. Non sed et duis dui leo, vulputate id malesuada non. Cras aliquet purus dui laoreet diam sed lacus, fames.',
+      'Students can test their knowledge and skills through interactive polls, quizzes, and debates, among others.',
     icon: NewspaperIcon,
   },
 ]

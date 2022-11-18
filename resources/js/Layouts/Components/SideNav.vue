@@ -13,8 +13,8 @@
             <div class="flex-shrink-0 flex items-center">
               <Link :href="route('dashboard')">
                 <img
-                  class="block h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
+                  class="block p-2 h-20 w-20"
+                  src="/storage/CutieImages/PHAPI_logo.png"
                   alt="Workflow"
                 />
               </Link>

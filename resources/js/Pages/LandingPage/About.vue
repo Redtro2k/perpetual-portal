@@ -80,7 +80,7 @@
                                 <img :src="`storage/CutieImages/${team}`" alt="" class="rounded-full h-40 w-40 mx-auto">
                             </template>
                             <template v-else-if="getObjectKey(teams[key], team) == 'name'">
-                                <h1 class="font-bold text-2xl ">{{team}}</h1>
+                                <h1 class="font-bold text-2xl mb-5">{{team}}</h1>
                             </template>
                             <template v-else>
                                 <p class="text-gray-500">{{team}}</p>
@@ -102,10 +102,10 @@
 <script setup>
 import GuestLayoutVue from '@/Layouts/GuestLayout.vue';
 const features = [
-    {images: 'website.png', label: 'WEB DESIGN', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quos fugiat, vitae iste laudantium consequatur incidunt! Illo cum odit earum atque! Sint officia reprehenderit assumenda mollitia quia atque sit ex?' },
-    {images: 'leader.png', label: 'LEADERSHIP', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quos fugiat, vitae iste laudantium consequatur incidunt! Illo cum odit earum atque! Sint officia reprehenderit assumenda mollitia quia atque sit ex?' },
-    {images: 'career.png', label: 'CAREERS', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quos fugiat, vitae iste laudantium consequatur incidunt! Illo cum odit earum atque! Sint officia reprehenderit assumenda mollitia quia atque sit ex?' },
-    {images: 'team.png', label: 'TEAM WORK', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quos fugiat, vitae iste laudantium consequatur incidunt! Illo cum odit earum atque! Sint officia reprehenderit assumenda mollitia quia atque sit ex?' },
+    {images: 'website.png', label: 'WEB DESIGN', description: 'When designing a website there are many key factors that will contribute to how it is perceived. A well-designed website can help build trust and guide visitors to take action. Creating a great user experience involves making sure your website design is optimised for usability (form and aesthetics) and how easy is it to use (functionality).' },
+    {images: 'leader.png', label: 'LEADERSHIP', description: 'We use our Leadership Principles every day, whether were discussing ideas for new projects or deciding on the best approach to solving a problem. It is just one of the things that makes us peculiar.' },
+    {images: 'career.png', label: 'CAREERS', description: 'We strive for continuous personal development. Stay motivated by learning new skills and developing new talents. Recognise that the world around us is constantly changing. Be open to change and remain alert to new opportunities.' },
+    {images: 'team.png', label: 'TEAM WORK', description: 'We communicate openly, frequently, and professionally. Facilitate two-way communication with other team members. Display personal and professional respect towards others. Share information and resources which enhance the performance of other members.' },
 
 ]
 const teams = [

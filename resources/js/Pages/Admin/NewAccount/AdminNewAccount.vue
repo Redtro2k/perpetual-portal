@@ -3,7 +3,7 @@
         <template #content>
             <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
                 <div class="sm:mx-auto sm:w-full sm:max-w-md">
-                    <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    <img class="mx-auto h-12 w-auto" src="/storage/CutieImages/PHAPI_logo.png"
                         alt="Workflow" />
                     <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Create New User</h2>
                     <p class="mt-2 text-center text-sm text-gray-600">
@@ -34,7 +34,7 @@
                                     <Datepicker v-model="form.birthdate" utc />
                                 </div>
                             </div>
-                            <small>for some concern we must fill birthdate first because for generating username and password</small>
+                            <small>for some concern we must first fill birthdate to auto generate username and password</small>
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700"> Name
                                 </label>
@@ -75,8 +75,8 @@
                             <div>
                                 <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
                                 <div class="mt-1">
-                                    <input type="text"
-                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-jvgreen focus:border-jvgreen sm:text-sm"
+                                    <input disabled type="text"
+                                        class="disabled:opacity-75 disabled:bg-gray-100 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-jvgreen focus:border-jvgreen sm:text-sm"
                                         v-model="form.password" />
                                 </div>
                             </div>
@@ -123,8 +123,8 @@ let submit = () => {
     form.post(route('new-account.store'), {
         preserveScroll: true,
         preserveState: true,
-        onSuccess: () => form.reset('password','name', 'username', 'password', 'email', 'gender','roles'),
-        onFinish: () => form.reset('password','name', 'username', 'password', 'email', 'gender','roles')
+        onSuccess: () => form.reset('name', 'username', 'password', 'email', 'gender','roles'),
+        onFinish: () => form.reset('name', 'username', 'password', 'email', 'gender','roles')
     })
 };
 

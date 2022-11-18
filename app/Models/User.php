@@ -23,7 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'user_name',
+        'username',
         'password',
         'gender'
     ];
@@ -68,5 +68,9 @@ class User extends Authenticatable
 
     public function message(){
         return $this->morphMany(Message::class, 'messageable');
+    }
+
+    public function teacherSubject(){
+        return $this->hasOne(Section::class, 'adviser_id', 'id');
     }
 }

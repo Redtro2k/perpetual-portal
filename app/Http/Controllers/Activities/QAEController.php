@@ -12,14 +12,16 @@ class QAEController extends Controller
     public function store(Request $request){
         $attr = $request->validate([
             'title' => 'required|string',
-            'dates' => 'required'
+            'dates' => 'required',
+            'isCentrilized' => 'required|boolean'
         ]);
         if($attr){
             $module = Modules::find($request->module_id);
             $module->activities()->create([
                 'title' => $request->title,
-                'start' => date('Y-m-d H:i:s', strtotime($request->dates[0])),
-                'due' => date('Y-m-d H:i:s', strtotime($request->dates[1])),
+                'start' => $request->dates[0],
+                'due' => $request->dates[1],
+                'section_id' => $request->isCentrilized == true ? auth()->user()->teacherSubject->id : null
             ]);
             return redirect()->route('modules.edit', $request->module_id)->with('success', 'Successfully creating new Activities');
         }

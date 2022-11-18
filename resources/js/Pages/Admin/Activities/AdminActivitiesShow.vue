@@ -87,13 +87,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{ selected }">
                                         <button  @click="form.reset('answer', 'correct_answer', 'question')" :class="[
                                             selected
-                                                ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                                ? 'bg-gray-50 text-jvgreen-200 hover:bg-white'
                                                 : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <PlusIcon :class="[
                                                 selected
-                                                    ? 'text-indigo-500'
+                                                    ? 'text-jvgreen-100'
                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                 'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -103,13 +103,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{ selected }">
                                         <button  @click="form.reset('answer', 'correct_answer', 'question')" :class="[
                                             selected
-                                                ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                                ? 'bg-gray-50 text-jvgreen-200 hover:bg-white'
                                                 : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <PlusIcon :class="[
                                                 selected
-                                                    ? 'text-indigo-500'
+                                                    ? 'text-jvgreen-100'
                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                 'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -119,13 +119,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{ selected }">
                                         <button @click="form.reset('answer', 'correct_answer', 'question')" :class="[
                                             selected
-                                                ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                                ? 'bg-gray-50 text-jvgreen-200 hover:bg-white'
                                                 : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <PlusIcon :class="[
                                                 selected
-                                                    ? 'text-indigo-500'
+                                                    ? 'text-jvgreen-100'
                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                 'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -135,13 +135,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{ selected }">
                                         <button @click="form.reset('answer', 'correct_answer', 'question')" :class="[
                                             selected
-                                                ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                                ? 'bg-gray-50 text-jvgreen-200 hover:bg-white'
                                                 : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <CogIcon :class="[
                                                 selected
-                                                    ? 'text-indigo-500'
+                                                    ? 'text-jvgreen-100'
                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                 'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -151,13 +151,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{ selected }">
                                         <button @click="form.reset('answer', 'correct_answer', 'question')" :class="[
                                             selected
-                                                ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                                ? 'bg-gray-50 text-jvgreen-200 hover:bg-white'
                                                 : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <UserIcon :class="[
                                                 selected
-                                                    ? 'text-indigo-500'
+                                                    ? 'text-jvgreen-100'
                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                 'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -232,7 +232,7 @@ let submit = () => {
                                                 <JetValidationErrors class="mb-4 pt-8" />
                                                 <WithDismiss class="mb-4 mt-8" v-if="$page.props.flash.success"
                                                     :label="$page.props.flash.success" />
-                                                <WithAccentBorder class="my-4" label="use '____' to highlight your questions,"/>
+                                                <WithAccentBorder class="my-4" label="Use underline '____' for the missing answer,"/>
                                                 <div class="mt-6 grid grid-cols-4 gap-4">
                                                     <form-input label="Question" v-model="form.question" />
                                                     <div class="flex space-x-2">

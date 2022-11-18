@@ -31,10 +31,10 @@ Route::get('/about', function () {
 })->name('about');
 Route::get('/contact-us', function () {
     return Inertia::render('LandingPage/Contact');
-});
+})->name('contact_us');
 Route::get('/school-information', function () {
     return Inertia::render('LandingPage/SchoolInformation');
-});
+})->name('school_information');
 
 
 
@@ -83,9 +83,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 
 
-
-    Route::middleware('checkteacheroradmin')->group(function() {
-        Route::resource('/modules', ModulesController::class, ['only' => ['create', 'edit', 'store', 'destroy', 'update']]);
+    Route::middleware(['checkteacheroradmin'])->group(function() {
         Route::resource('/files', FilesController::class, ['only' => ['store', 'destroy']]);
         Route::resource('/owned-subject', SubjectOwnedContoller::class, ['only' => ['show', 'destroy']]);
         Route::resource('/question-answer', QuestionAnswerController::class, ['only' => ['show', 'store', 'destroy', 'update']]);
@@ -120,4 +118,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::post('create-conversation', 'storeConvertion')->name('inbox.store');
         Route::post('reply-conversation', 'replyConversation')->name('inbox.reply');
     });
+    Route::resource('/modules', ModulesController::class, ['only' => ['create', 'store', 'destroy', 'update']])->middleware('checkteacheroradmin');
 });

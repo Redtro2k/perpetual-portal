@@ -19,7 +19,12 @@ module.exports = {
             colors: {
                 rose: colors.rose,
                 jvgreen: "#1AA900",
-                jvdgreen: "#199901",
+                jvdgreen: "#189A01",
+                'jvgreen-100': "#1AA900",
+                'jvgreen-200': "#189A01",
+                'jvgreen-300': "#158901",
+                'jvgreen-400': "#127600",
+                'jvgreen-500': "#106600",
                 jvgray: "#B8B8B8",
             }
         },

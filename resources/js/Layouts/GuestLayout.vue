@@ -16,8 +16,8 @@
               <Link href="/">
                 <span class="sr-only">LMSFPH Palmera</span>
                 <img
-                  class="h-8 w-auto sm:h-10"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                  class="h-20 w-24 sm:h-20"
+                  src="storage/CutieImages/PHAPI_logo.png"
                   alt=""
                 />
               </Link>
@@ -437,28 +437,15 @@
       name: "Contact",
       description:
         "contact our support center.",
-      href: "#",
+      href: route('contact_us'),
       icon: InformationCircleIcon,
     },
     {
       name: "School Information",
       description:
         "Learn how to maximize our platform to get the most out of it.",
-      href: "#",
+      href: route('school_information'),
       icon: InformationCircleIcon,
-    },
-    {
-      name: "Events",
-      description:
-        "See what meet-ups and other events we might be planning near you.",
-      href: "#",
-      icon: CalendarIcon,
-    },
-    {
-      name: "Security",
-      description: "Understand how we take your privacy seriously.",
-      href: "#",
-      icon: ShieldCheckIcon,
     },
   ];
   const recentPosts = [

@@ -31,12 +31,13 @@ trait AllModulesTrait
 
     public function getActivityById($id){
         $m = Modules::find($id);
-        return $m->activities->map(fn($h) => [
+        return $m->activities->whereIn('section_id', [auth()->user()->section != null ? 'null' : auth()->user()->section->first()->id, null])->map(fn($h) => [
             'id' => $h->id,
             'title' => $h->title,
-            'start' => Carbon::createFromFormat('Y-m-d H:i:s', $h->start)->format('Y-m-d g:i a'),
-            'due' => Carbon::createFromFormat('Y-m-d H:i:s', $h->start)->format('Y-m-d g:i a'),
-            'questions' => $h->questionAnswer->count()
+            'start' => $h->start,
+            'due' => $h->due,
+            'questions' => $h->questionAnswer->count(),
+            'checked' => $h->start <= Carbon::now() && $h->due >= Carbon::now(),
         ]);
     }
 }

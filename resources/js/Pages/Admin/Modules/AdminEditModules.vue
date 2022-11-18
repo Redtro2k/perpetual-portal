@@ -15,6 +15,8 @@ import InnerTable from '@/Custom/List/Tables/SortableTable/InnerTable.vue';
 import WithDashBorder from '@/Custom/Feedback/EmptyStates/WithDashBorder.vue';
 import { onMounted, ref } from 'vue'
 import WithAccentBorder from "@/Custom/Feedback/Alert/WithAccentBorder.vue";
+import Radio from '@/Custom/Forms/Toggle/WithLeftLabelAndDescription.vue';
+
 
 
 const props = defineProps({
@@ -27,7 +29,7 @@ const form = useForm({
     name: props.selected.title,
     grading: props.selected.quarter,
     description: props.selected.description,
-    module_id: props.selected.id
+    module_id: props.selected.id,
 });
 
 const options = [
@@ -44,13 +46,15 @@ const files = useForm({
 const qae = useForm({
     module_id: props.selected.id,
     title: '',
-    dates: null
+    dates: null,
+    isCentrilized: false
+
 })
 // For demo purposes assign range from the current date
 onMounted(() => {
             const startDate = new Date();
             const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
-            qae.dates = [startDate.toISOString(), endDate.toISOString()];
+            qae.dates = [startDate, endDate];
     })
 let addFiles = () => {
     files.post(route('files.store'), {
@@ -86,13 +90,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{selected}">
                                         <button :class="[
                                             selected
-                                            ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                            ? 'bg-gray-50 text-jvgreen-300 hover:bg-white'
                                             : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <PlusIcon :class="[
                                               selected
-                                                ? 'text-indigo-500'
+                                                ? 'text-jvgreen-100'
                                                 : 'text-gray-400 group-hover:text-gray-500',
                                               'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -102,13 +106,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{selected}">
                                         <button :class="[
                                             selected
-                                            ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                            ? 'bg-gray-50 text-jvgreen-300 hover:bg-white'
                                             : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <DocumentAddIcon :class="[
                                               selected
-                                                ? 'text-indigo-500'
+                                                ? 'text-jvgreen-100'
                                                 : 'text-gray-400 group-hover:text-gray-500',
                                               'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -118,13 +122,13 @@ let submit = () => {
                                     <Tab as="template" v-slot="{selected}">
                                         <button :class="[
                                             selected
-                                            ? 'bg-gray-50 text-indigo-600 hover:bg-white'
+                                            ? 'bg-gray-50 text-jvgreen-300 hover:bg-white'
                                             : 'text-gray-900 hover:text-gray-900 hover:bg-gray-50',
                                             'group rounded-md px-3 py-2 flex items-center text-sm font-medium',
                                         ]">
                                             <PencilAltIcon :class="[
                                               selected
-                                                ? 'text-indigo-500'
+                                                ? 'text-jvgreen-100'
                                                 : 'text-gray-400 group-hover:text-gray-500',
                                               'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
@@ -185,8 +189,7 @@ let submit = () => {
                                                 <with-dismiss v-if="$page.props.flash.success" :label="$page.props.flash.success" />
                                                 <div class="mt-6 grid grid-cols-1 gap-4">
                                                     <form-input label="Title" v-model="files.name" />
-                                                    <input type="file"
-                                                        @input="files.content = $event.target.files[0]" />
+                                                    <input type="file" @input="files.content = $event.target.files[0]" />
                                                 </div>
                                             </template>
                                             <template #footer>
@@ -223,10 +226,11 @@ let submit = () => {
                                                     <form-input label="Title" v-model="qae.title" />
                                                     <form-slot label="Start - Due">
                                                         <template #main>
-                                                            <Datepicker v-model="qae.dates" :is-24="false" range />
+                                                            <Datepicker v-model="qae.dates" :is-24="false" range utc/>
                                                         </template>
                                                     </form-slot>
                                                 </div>
+                                                    <Radio class="pt-4" label="Not Centrilized" body="If you turn on it will post only to your handle sections" v-model="qae.isCentrilized" />
                                             </template>
                                             <template #footer>
                                                 <JetButton class="ml-4" :class="{ 'opacity-25': qae.processing }"
@@ -250,7 +254,6 @@ let submit = () => {
                                                     edit_link="student-taking-activities.show"
                                                 />
                                             </template>
-
                                             <WithDashBorder class="mt-2" v-else
                                                 label="No Activities, please Add Activities on this lesson" />
                                         </template>
@@ -265,5 +268,6 @@ let submit = () => {
                 </div>
             </main>
         </template>
+        <!-- <Radio class="pt-4" label="Deploy activities" body="if you one this activities, will notify who taken this subjects." v-model="inEnabled.given" v-show="props.questions.length != 0"/> -->
     </user-layout>
 </template>

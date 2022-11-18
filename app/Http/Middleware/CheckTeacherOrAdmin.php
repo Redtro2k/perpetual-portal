@@ -18,7 +18,7 @@ class CheckTeacherOrAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows('manage_teacher') || Gate::allows('manage_superadmin_or_admin')){
+        if(Gate::allows('manage_teacher') || Gate::allows('manage_super_admin')){
             return $next($request);
         }else{
             return abort(403);

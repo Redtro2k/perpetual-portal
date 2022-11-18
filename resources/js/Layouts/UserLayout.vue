@@ -20,7 +20,6 @@
         <aside v-show="showSideNav" class="xl:block xl:col-span-4 hidden">
           <div class="sticky top-4 space-y-4">
             <PeoplesNav :users="$page.props.layout.online" />
-            <AssignmentNav :homeworks="assignments" />
           </div>
         </aside>
       </div>

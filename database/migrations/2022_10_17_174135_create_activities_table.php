@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('due');
+            $table->string('start');
+            $table->string('due');
             $table->string('token')->default(bin2hex(random_bytes(16)));
             $table->unsignedBigInteger('activiteable_id');
             $table->string('activiteable_type');

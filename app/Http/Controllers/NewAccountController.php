@@ -27,6 +27,7 @@ class NewAccountController extends Controller
             $user = User::create([
                 'name' => $request['name'],
                 'email' => $request['email'],
+                'username' => $request['username'],
                 'gender' => $request['gender'],
                 'password' => Hash::make($request['password']),
             ]);

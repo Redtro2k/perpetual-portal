@@ -33,7 +33,7 @@ const type = [
 ];
 const form = useForm({
     yearlevel: '',
-    academicYear: getLastAcademicyear.id,
+    academicYear: getLastAcademicyear == null ? '' : getLastAcademicyear.id,
     type: null
 });
 

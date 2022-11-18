@@ -176,7 +176,7 @@ import SimpleDropdown from "@/Custom/Forms/InputMenus/SimpleCustom.vue";
 const form = useForm({
   name: "",
   email: "",
-  username: "testing",
+  username: "",
   password: "",
   gender: "",
   password_confirmation: "",
