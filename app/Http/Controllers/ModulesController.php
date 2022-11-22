@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Admin\AvailableSubject;
-use App\Models\Modules;
+use App\Models\{Section, Modules};
 use App\Http\Requests\ModulesRequest;
 use App\Http\Traits\AllModulesTrait;
 
@@ -46,7 +46,6 @@ class ModulesController extends Controller
         }
     }
     public function edit($id){
-        //
         return Inertia::render('Admin/Modules/AdminEditModules', [
             'selected' => $this->findModuleById($id),
             'activities' => $this->getActivityById($id),

@@ -30,7 +30,6 @@ class QAEController extends Controller
                 ]);
                 return redirect()->route('modules.edit', $request->module_id)->with('success', 'Successfully creating new Activities');
             }
-
         }
     }
 

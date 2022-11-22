@@ -20,4 +20,8 @@ class Activities extends Model
     public function scores(){
         return $this->belongsToMany(User::class, 'activity_user', 'activity_id','user_id')->withPivot('scores', 'is_complete');
     }
+
+    public function belongsToSections(){
+        return $this->hasOne(Section::class, 'id', 'section_id');
+    }
 }

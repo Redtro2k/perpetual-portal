@@ -244,6 +244,7 @@ let submit = () => {
                                     :haveFooter="$page.props.can.admin_or_superadmin || $page.props.can.manage_teacher"
                                     >
                                         <template #main>
+                                            <WithRight class="my-2" label="all of quizzes created by admin are not view to our student, we need to repost it, just click edit and go option, then add schedule. "/>
                                             <template v-if="props.activities != 0">
                                                  <inner-table v-if="$page.props.can.admin_or_superadmin || $page.props.can.manage_teacher"
                                                 :items="props.activities" edit_link="qae.destroy"

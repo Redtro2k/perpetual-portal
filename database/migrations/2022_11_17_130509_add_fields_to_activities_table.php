@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('activities', function (Blueprint $table) {
             //
             $table->unsignedBigInteger('section_id')->nullable();
-            $table->foreign('section_id')->references('id')->on('activities')->onDelete('cascade');
+            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
         });
     }
 

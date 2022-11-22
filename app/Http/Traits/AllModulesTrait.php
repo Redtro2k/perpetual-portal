@@ -3,7 +3,10 @@
 namespace App\Http\Traits;
 
 use App\Models\Modules;
+use App\Models\Section;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Gate;
+
 
 trait AllModulesTrait
 {
@@ -31,13 +34,17 @@ trait AllModulesTrait
 
     public function getActivityById($id){
         $m = Modules::find($id);
+
         return $m->activities
-        ->whereIn('section_id', [auth()->user()->section != null ? 'null' : auth()->user()->section->first()->id, null])
+        ->whereIn('section_id', [
+            auth()->user()->teacherSubject != null ? auth()->user()->teacherSubject->id : false
+        , null])
         ->map(fn($h) => [
             'id' => $h->id,
             'title' => $h->title,
             'start' => $h->start,
             'due' => $h->due,
+            'By' => $h->belongsToSections != null ? $h->belongsToSections->name : 'Admin',
             'questions' => $h->questionAnswer->count(),
             'checked' => $h->start >= Carbon::now() && $h->due >= Carbon::now(),
         ]);
