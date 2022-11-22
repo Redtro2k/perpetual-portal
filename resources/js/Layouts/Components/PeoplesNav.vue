@@ -14,7 +14,7 @@
                             <Link :href="user.href">{{ user.name == $page.props.user.name ? 'You' : user.name }}</Link>
                           </p>
                           <p class="text-sm text-gray-500">
-                            <Link :href="user.href">{{ '@' + user.email }}</Link>
+                            <Link :href="user.href">{{ '@' + user.role }}</Link>
                           </p>
                         </div>
                         <div class="flex-shrink-0">
@@ -39,14 +39,4 @@ import { Link } from '@inertiajs/inertia-vue3';
 defineProps({
   users: Object
 })
-const peoples = [
-  {
-    name: 'Leonard Krasner',
-    handle: 'leonardkrasner',
-    href: '#',
-    imageUrl:
-      'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  // More people...
-]
 </script>

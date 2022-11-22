@@ -154,7 +154,9 @@ let submit = () => {
                                                 </div>
                                                 <div class="py-4">
                                                     <template v-if="$page.props.can.admin_or_superadmin">
-                                                        <label for="first-name" class="block text-sm font-medium text-gray-700">Description</label>
+                                                        <label for="first-name" class="block text-sm font-medium text-gray-700">Description
+                                                            <small v-if="!form.description" class="text-indigo-500 font-semibold">*required</small>
+                                                        </label>
                                                         <QuillEditor v-model:content="form.description"
                                                             contentType="html"
                                                             placeholder="description About this Subjects"

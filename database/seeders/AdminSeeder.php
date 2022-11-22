@@ -16,7 +16,9 @@ class AdminSeeder extends Seeder
         Role::create(['name' => 'superadministrator']);
         Role::create(['name' => 'teacher']);
         $user = User::create([
-            'name' => 'Darwin Llacuna',
+            'name' => 'Administrator',
+            'firstname' => 'administrator',
+            'lastname' => 'administrator',
             'username' => 'admin',
             'email' => 'darwin@dev.com',
             'gender' => 'male',

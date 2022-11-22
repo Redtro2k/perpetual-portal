@@ -37,7 +37,8 @@
       <ListboxButton
         class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-jvgreen focus:border-jvgreen sm:text-sm"
       >
-        <span class="block truncate" v-if="name">{{ name }}</span>
+        <span class="block truncate" v-if="name">{{ name }}
+        </span>
         <span class="block truncate text-gray-500" v-else>{{ props.placeholder }}</span>
         <span
           class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"

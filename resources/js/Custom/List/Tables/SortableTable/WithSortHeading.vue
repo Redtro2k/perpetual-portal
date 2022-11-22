@@ -96,10 +96,6 @@ const isNull = (value) => {
                                         <td
                                             class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                             <div class="flex space-x-2">
-                                            <Link :href="
-                                              route(props.routes, {
-                                                show_user: Object.values(item)[0],
-                                              })" class="text-jvgreen hover:text-jvdgreen" preserve-state>Edit<span class="sr-only">, {{Object.values(item)[0] }}</span></Link>
                                             <Link v-if="props.viewable" :href="route(props.viewlink, Object.values(item)[0])" class="text-jvgreen hover:text-jvdgreen">View <span class="sr-only">, {{Object.values(item)[0] }}</span></Link>
                                             </div>
                                         </td>
@@ -119,4 +115,6 @@ const isNull = (value) => {
             <loader />
         </template>
     </Suspense>
+    <!-- <Link :href="route(props.routes, {show_user: Object.values(item)[0],})" class="text-jvgreen hover:text-jvdgreen" preserve-state>Edit<span class="sr-only">, {{Object.values(item)[0] }}</span></Link> -->
+
 </template>

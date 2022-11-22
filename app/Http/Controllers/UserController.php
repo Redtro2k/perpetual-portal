@@ -36,7 +36,6 @@ class UserController extends Controller
             ->paginate(5)->withQueryString()->through(fn ($u) => [
                 'name' => $u->name,
                 'image' => $u->profile_photo_url,
-                'email' => $u->email,
                 'roles' => implode(',', json_decode($u->roles->pluck('name'))),
                 // 'roles' => $u->roles->first()->name
             ]);

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 
 class NewAccountRequest extends FormRequest
 {
@@ -28,9 +29,13 @@ class NewAccountRequest extends FormRequest
             //
             'name' => 'required|string|max:255',
             'email' => 'required|email|string|max:255|unique:users',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'middlename' => 'required',
             'password' => 'required',
             'gender' => 'required',
-            'roles' => 'required'
+            'roles' => 'required',
+            'birthdate' => 'required|date|before_or_equal: '.Carbon::now()->subYears(7)->format('Y-m-d')
         ];
     }
 }

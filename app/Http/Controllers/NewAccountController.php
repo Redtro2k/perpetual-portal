@@ -25,11 +25,15 @@ class NewAccountController extends Controller
     public function store(NewAccountRequest $request){
         if($request->validated()){
             $user = User::create([
+                'firstname' => $request['firstname'],
+                'lastname' => $request['lastname'],
+                'middlename' => $request['middle'],
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'username' => $request['username'],
                 'gender' => $request['gender'],
                 'password' => Hash::make($request['password']),
+                'birthdate' => $request['birthdate']
             ]);
             $user->assignRole($request['roles']);
             return redirect()->back()->with('success', 'Successfully created new User, '. $request['name']);

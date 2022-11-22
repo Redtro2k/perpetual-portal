@@ -63,7 +63,6 @@
                                                 <dl class="divide-y divide-gray-200">
                                                     <form-span label="Name" :value="users.name" />
                                                     <form-photo :src="users.profile_photo_url" />
-                                                    <form-span label="Email" :value="users.email" />
                                                     <form-span label="Gender" :value="users.gender" />
                                                     <form-span label="BirthDate" :value="datetime" />
                                                     <form-span label="Created" :value="moment(users.created_at).format('ll')" />
@@ -95,11 +94,8 @@
                                                 </template>
                                                 <template v-if="props.user_roles.hasOwnProperty('student')">
                                                     <div class="py-2">
-                                                        <label for="first-name" class="block text-sm font-medium text-gray-700">Handle Section & Subjects</label>
-                                                    <template v-if="props.user_roles.student != null">
-                                                        <inner-table :items="[props.user_roles.student]" />
-                                                    </template>
-                                                    <WithDashBorder v-else label="No currently assigned"/>
+                                                        <label for="first-name" class="block text-sm font-medium text-gray-700">Student Information</label>
+                                                        <WithAccentBorder label="No Section enroll"/>
                                                     </div>
                                                 </template>
                                             </template>

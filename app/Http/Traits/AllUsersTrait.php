@@ -12,7 +12,6 @@ trait AllUsersTrait{
         })->orderBy('id', 'desc')->paginate(6, ["*"], 'teachers')->through(fn($m) => [
             'id' => $m->id,
             'name' => $m->name,
-            'email' => $m->email,
             'image' => $m->profile_photo_url,
             'user_id' => $m->user_uid == null || $m->assignSubjects->count() != 1 ? 'Available' : $m->assignSubjects->first()->name .' teacher',
         ])->withPath('?id='.$id)->onEachSide(5);
@@ -25,7 +24,6 @@ trait AllUsersTrait{
         })->paginate(6, ["*"], 'users')->through(fn($m) => [
             'id' => $m->id,
             'name' => $m->name,
-            'email' => $m->email,
             'image' => $m->profile_photo_url,
             'section' => $m->section->count() != 0 ? $m->section->first()->name : 'No Section'
         ]);
@@ -41,7 +39,6 @@ trait AllUsersTrait{
         ->paginate(6, ["*"], 'owned')->through(fn($m) => [
             'id' => $m->id,
             'name' => $m->name,
-            'email' => $m->email,
             'image' => $m->profile_photo_url,
             'section' => $m->section->count() != 0 ? $m->section->first()->name : 'No Section'
         ]);

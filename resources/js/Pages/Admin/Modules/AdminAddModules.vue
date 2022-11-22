@@ -24,10 +24,10 @@ const form = useForm({
 });
 
 const options = [
-    { id: 1, name: 'prelim' },
-    { id: 2, name: 'midterm' },
-    { id: 3, name: 'prefinal' },
-    { id: 4, name: 'final' },
+    { id: 1, name: '1st Grading' },
+    { id: 2, name: '2nd Grading' },
+    { id: 3, name: '3rd Grading' },
+    { id: 4, name: '4th Grading' },
 ];
 
 let submit = () => {
@@ -86,7 +86,9 @@ let submit = () => {
                                                 </div>
                                                 <div class="mt-4">
                                                     <label for="first-name"
-                                                        class="block text-sm font-medium text-gray-700">Description</label>
+                                                        class="block text-sm font-medium text-gray-700">Description
+                                                        <small v-if="!form.description" class="text-indigo-500 font-semibold">* required</small>
+                                                    </label>
                                                     <QuillEditor v-model:content="form.description" contentType="html"
                                                         placeholder="description about School" toolbar="essential"
                                                         theme="snow" />

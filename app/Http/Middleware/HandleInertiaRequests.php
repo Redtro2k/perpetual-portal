@@ -56,7 +56,7 @@ class HandleInertiaRequests extends Middleware
             'layout' => [
                 'online' => User::orderBy('last_seen', 'DESC')->limit(3)->get()->map(fn($u) => [
                     'name' => $u->name,
-                    'email' => $u->email,
+                    'role' => $u->roles->first()->name,
                     'image' => $u->profile_photo_url,
                     'online' => $u->isOnline()
                 ])

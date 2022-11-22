@@ -12,6 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('user_uid')->unique()->nullable();
             $table->string('name')->unique();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('middlename')->nullable();
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('gender');

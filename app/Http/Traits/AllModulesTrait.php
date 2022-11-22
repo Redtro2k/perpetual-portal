@@ -31,7 +31,8 @@ trait AllModulesTrait
 
     public function getActivityById($id){
         $m = Modules::find($id);
-        return $m->activities->whereIn('section_id', [auth()->user()->section != null ? 'null' : auth()->user()->section->first()->id, null])->where('given', 1)
+        return $m->activities
+        ->whereIn('section_id', [auth()->user()->section != null ? 'null' : auth()->user()->section->first()->id, null])
         ->map(fn($h) => [
             'id' => $h->id,
             'title' => $h->title,

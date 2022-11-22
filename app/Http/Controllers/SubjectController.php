@@ -21,7 +21,6 @@ class SubjectController extends Controller
                 'id' => $m->id,
                 'name' => $m->name,
                 'images' => $m->getMedia('subject')->first()->getUrl(),
-                'value_units' => $m->value_units,
             ])->onEachSide(5),
             'teachers' => $this->getAllTeacherUser($request->id),
             'selected_subject' => $subject,
