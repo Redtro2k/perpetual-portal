@@ -24,7 +24,7 @@
                         :href="link.url"
                         v-html="link.label"
                         class="relative inline-flex items-center px-4 py-2 border text-sm font-medium"
-                        :class="{'bg-white border-gray-300 text-gray-500 hover:bg-gray-50': ! link.url, 'z-10 bg-indigo-50 border-jvgreen text-jvdgreen' : link.active}"
+                        :class="{'bg-white border-gray-300 text-gray-500 hover:bg-gray-50': ! link.url, 'z-10 bg-green-50 border-jvgreen text-jvdgreen' : link.active}"
                         preserve-state
                         preserve-scroll
                     />

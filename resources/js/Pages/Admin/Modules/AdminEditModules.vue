@@ -47,7 +47,7 @@ const qae = useForm({
     module_id: props.selected.id,
     title: '',
     dates: null,
-    isCentrilized: false
+    isCentrilized: true
 
 })
 // For demo purposes assign range from the current date
@@ -230,7 +230,7 @@ let submit = () => {
                                                         </template>
                                                     </form-slot>
                                                 </div>
-                                                    <Radio v-show="$page.props.can.manage_teacher" class="pt-4" label="Not Centralized" body="If you turn on it will post only to your handle sections" v-model="qae.isCentrilized" />
+                                                    <Radio v-show="$page.props.can.manage_teacher" class="pt-4" label="Not Centralized" body="If you turn on it will post only to your handle sections, but for now it set default on not centralized" v-model="qae.isCentrilized" />
                                             </template>
                                             <template #footer>
                                                 <JetButton class="ml-4" :class="{ 'opacity-25': qae.processing }"
@@ -244,7 +244,7 @@ let submit = () => {
                                     :haveFooter="$page.props.can.admin_or_superadmin || $page.props.can.manage_teacher"
                                     >
                                         <template #main>
-                                            <WithRight class="my-2" label="all of quizzes created by admin are not view to our student, we need to repost it, just click edit and go option, then add schedule. "/>
+                                            <WithRight v-if="!$page.props.can.admin_or_superadmin" class="my-2" label="all of quizzes created by admin are not view to our student, we need to repost it, just click edit and go option, then add schedule. "/>
                                             <template v-if="props.activities != 0">
                                                  <inner-table v-if="$page.props.can.admin_or_superadmin || $page.props.can.manage_teacher"
                                                 :items="props.activities" edit_link="qae.destroy"
@@ -269,6 +269,5 @@ let submit = () => {
                 </div>
             </main>
         </template>
-        <!-- <Radio class="pt-4" label="Deploy activities" body="if you one this activities, will notify who taken this subjects." v-model="inEnabled.given" v-show="props.questions.length != 0"/> -->
     </user-layout>
 </template>

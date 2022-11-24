@@ -105,6 +105,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('view-student/{id}', [QuestionAnswerController::class, 'viewScores'])->name('view-student');
         Route::post('add-points', [QuestionAnswerController::class, 'addPoints'])->name('add-points');
         Route::get('view-all-result/{id}', [QuestionAnswerController::class, 'exportAllActivities'])->name('view-all-activities');
+        Route::controller(QAEController::class)->group(function() {
+            Route::post('migrate-activity', 'migrateActivities')->name('migrate-activity');
+        });
     });
     Route::middleware('can:manage_student')->group(function() {
         Route::resource('student-subject', StudentSubjectController::class, ['only' => ['show']]);

@@ -10,7 +10,7 @@ use App\Http\Traits\AllActivitiesTraits;
 use App\Models\{QuestionAnswer, Activities as Activity, Modules};
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\AllQuestionAnswer;
-
+use Illuminate\Support\Facades\Gate;
 
 class QuestionAnswerController extends Controller
 {
@@ -20,11 +20,12 @@ class QuestionAnswerController extends Controller
     {
         return Inertia::render('Admin/Activities/AdminActivitiesShow', [
             'questions' => $this->getQuestionAnswerById($id),
-            'selected_activities' => Activity::find($id),
-            'students_answer' => $this->getStudentScoresById($id)
+            'selected_activities' => Activity::with('activiteable')->find($id),
+            'students_answer' => $this->getStudentScoresById($id),
         ]);
     }
-    public function isGivenUpdate(Request $request){
+    public function isGivenUpdate(Request $request)
+    {
         dd($request);
     }
     public function viewScores(Request $request, $id)
@@ -36,14 +37,17 @@ class QuestionAnswerController extends Controller
             'user_id' => $id
         ]);
     }
-    public function exportResult($id){
+    public function exportResult($id)
+    {
         return Excel::download(new AllQuestionAnswer($id), 'result.xlsx');
     }
-    public function exportAllActivities($id){
+    public function exportAllActivities($id)
+    {
         return Excel::download(new AllActivitiesExport($id), 'all-activities.xlsx');
     }
 
-    public function addPoints(Request $request){
+    public function addPoints(Request $request)
+    {
         $activity = Activity::find($request->activity_id);
         $activity->questionAnswer->find($request->selected_question)->respondence()->updateExistingPivot($request->user_id, ['is_essay' => $request->points_value]);
         $total = $activity->scores->find($request->user_id)->pivot->scores + $request->points_value;
@@ -60,13 +64,24 @@ class QuestionAnswerController extends Controller
         ]);
         if ($attr) {
             $activity = Activity::find($request->activity_id);
-            $activity->questionAnswer()->create([
-                'question' => $request->question,
-                'answer' => $request->answer,
-                'correct_answer' => $request->correct_answer,
-            ]);
 
-            return redirect()->route('question-answer.show', $request->activity_id)->with('success', 'Successfully added new Question Items');
+            if ($activity->section_id == null && Gate::allows('manage_superadmin_or_admin')) {
+                $activity->questionAnswer()->create([
+                    'question' => $request->question,
+                    'answer' => $request->answer,
+                    'correct_answer' => $request->correct_answer,
+                ]);
+                return redirect()->route('question-answer.show', $request->activity_id)->with('success', 'Successfully added new Question Items admin');
+            } elseif ($activity->section_id != null && Gate::allows('manage_teacher')) {
+                $activity->questionAnswer()->create([
+                    'question' => $request->question,
+                    'answer' => $request->answer,
+                    'correct_answer' => $request->correct_answer,
+                ]);
+                return redirect()->route('question-answer.show', $request->activity_id)->with('success', 'Successfully added new Question Items teacher');
+            } else {
+                return redirect()->route('question-answer.show', $request->activity_id)->with('warning', 'You are not Allowed to add a new Question');
+            }
         }
     }
     public function destroy(Request $request, $id)

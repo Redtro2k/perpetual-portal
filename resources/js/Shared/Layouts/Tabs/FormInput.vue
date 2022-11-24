@@ -4,7 +4,7 @@
             <small v-if="!modelValue" class="text-indigo-500 font-semibold">*required</small>
         </label>
         <input ref="input" type="text" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
-        :class="[disabled ? 'bg-gray-300': '', 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-jvgreen focus:border-jvgreen sm:text-sm']" :disabled="disabled"/>
+        :class="[disabled ? 'bg-gray-200': '', 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-jvgreen focus:border-jvgreen sm:text-sm']" :disabled="disabled"/>
     </div>
 </template>
 <script setup>

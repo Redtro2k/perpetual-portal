@@ -34,6 +34,8 @@ class ModulesController extends Controller
 
         }
     }
+
+
     public function update(Request $request, $id){
         $attr = $request->validate([
             'name' => 'required|string',

@@ -44,7 +44,7 @@ trait AllModulesTrait
             'title' => $h->title,
             'start' => $h->start,
             'due' => $h->due,
-            'By' => $h->belongsToSections != null ? $h->belongsToSections->name : 'Admin',
+            'status' => $h->belongsToSections != null ? $h->belongsToSections->name : 'Repost',
             'questions' => $h->questionAnswer->count(),
             'checked' => $h->start >= Carbon::now() && $h->due >= Carbon::now(),
         ]);

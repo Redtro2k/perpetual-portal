@@ -10,7 +10,7 @@ import JetValidationErrors from "@/Components/ValidationErrors.vue";
 import SimpleCustom from "@/Custom/Forms/InputMenus/SimpleCustom.vue";
 import FormSlot from '@/Shared/Layouts/Tabs/FormSlot.vue';
 import JetButton from '@/Components/Button.vue';
-import { ref } from '@vue/reactivity';
+import { ref, onMounted } from 'vue';
 import ButtonPrimary from '@/Custom/Elements/Buttons/StackCardLayout/ButtonPrimary.vue';
 import RadioButton from '@/Custom/Forms/RadioGroups/RadioButton.vue';
 import InnerTable from '@/Custom/List/Tables/SortableTable/InnerTable.vue';
@@ -33,6 +33,25 @@ const form = useForm({
     correct_answer: '',
     activity_id: props.selected_activities.id
 });
+
+const qae = useForm({
+    current_id: props.selected_activities.activiteable.id,
+    title: props.selected_activities.title,
+    dates: null,
+    questions: props.questions,
+});
+
+onMounted(() => {
+            const startDate = new Date();
+            const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
+            qae.dates = [startDate, endDate];
+    })
+
+let repost = () => {
+    qae.post(route('migrate-activity'), {
+        preserveScroll: true
+    })
+}
 
 let add = () => {
     if (possibleAnswer.value.length != 0) {
@@ -180,6 +199,7 @@ let submit = () => {
                                                 <JetValidationErrors class="mb-4 pt-8" />
                                                 <WithDismiss class="mb-4 mt-8" v-if="$page.props.flash.success"
                                                     :label="$page.props.flash.success" />
+                                                    <WithAccentBorder class="my-2" v-if="$page.props.flash.warning"  :label="$page.props.flash.warning"/>
                                                 <div class="mt-6 grid grid-cols-4 gap-4">
                                                     <form-input label="Question" v-model="form.question" />
                                                     <div class="flex space-x-2">
@@ -212,6 +232,7 @@ let submit = () => {
                                                 <JetValidationErrors class="mb-4 pt-8" />
                                                 <WithDismiss class="mb-4 mt-8" v-if="$page.props.flash.success"
                                                     :label="$page.props.flash.success" />
+                                                    <WithAccentBorder class="my-2" v-if="$page.props.flash.warning"  :label="$page.props.flash.warning"/>
                                                     <QuillEditor v-model:content="form.question" contentType="html"
                                                         placeholder="Create Essay" toolbar="essential"
                                                         theme="snow" />
@@ -235,6 +256,7 @@ let submit = () => {
                                                 <JetValidationErrors class="mb-4 pt-8" />
                                                 <WithDismiss class="mb-4 mt-8" v-if="$page.props.flash.success"
                                                     :label="$page.props.flash.success" />
+                                                    <WithAccentBorder class="my-2" v-if="$page.props.flash.warning"  :label="$page.props.flash.warning"/>
                                                 <WithAccentBorder class="my-4" label="Use underline '____' for the missing answer,"/>
                                                 <div class="mt-6 grid grid-cols-4 gap-4">
                                                     <form-input label="Question" v-model="form.question" />
@@ -261,27 +283,45 @@ let submit = () => {
 
                                 </TabPanel>
                                 <TabPanel>
-                                    <form @submit.prevent="enableSave">
                                         <form-description title="Option"
-                                            description="all controls" haveFooter>
+                                            description="all controls including given to student, and repost quiz with schedule" haveFooter>
                                             <template #main>
-                                                <WithAccentBorder class="mt-4" v-if="props.questions.length == 0" label="Empty Question"/>
-                                                <Radio class="pt-4" label="Deploy activities" body="if you one this activities, will notify who taken this subjects." v-model="inEnabled.given" v-show="props.questions.length != 0"/>
+                                                <template v-if="props.selected_activities.section_id != null && $page.props.can.manage_teacher">
+                                                    <WithAccentBorder class="mt-4" v-if="props.questions.length == 0" label="Empty Question"/>
+                                                    <Radio class="pt-4" label="Deploy activities" body="if you one this activities, will notify who taken this subjects." v-model="inEnabled.given" v-show="props.questions.length != 0"/>
+                                                </template>
+                                                <template v-else-if="props.selected_activities.section_id == null && $page.props.can.manage_teacher">
+                                                    <with-dismiss v-if="$page.props.flash.success" :label="$page.props.flash.success" />
+                                                    <with-accent-border v-if="$page.props.flash.warning" :label="$page.props.flash.warning" />
+                                                    <div class="mt-6 grid grid-cols-4 gap-4">
+                                                        <form-input :disabled="true" label="Title" v-model="qae.title" />
+                                                        <form-slot label="Start - Due">
+                                                            <template #main>
+                                                                <Datepicker v-model="qae.dates" :is-24="false" range utc />
+                                                            </template>
+                                                        </form-slot>
+                                                    </div>
+                                                </template>
+                                                <template v-else>
+                                                    <WithRight class="mt-4" label="No Current Options available"/>
+                                                </template>
                                             </template>
                                             <template #footer>
-                                                <JetButton class="ml-4" :class="{ 'opacity-25': enableSave.processing }"
+                                                <JetButton @click.prevent="enableSave" v-show="props.questions.length != 0" v-if="props.selected_activities.section_id != null && $page.props.can.manage_teacher" class="ml-4" :class="{ 'opacity-25': enableSave.processing }"
                                                         :disabled="enableSave.processing">save</JetButton>
+                                                <JetButton v-else-if="props.selected_activities.section_id == null && $page.props.can.manage_teacher" class="ml-4" :class="{ 'opacity-25': qae.processing }"
+                                                :disabled="qae.processing" @click.prevent="repost">Add Schedule</JetButton>
                                             </template>
                                         </form-description>
-                                    </form>
                                 </TabPanel>
                                 <TabPanel>
                                     <form-description title="All Students"
                                             description="list of all student who answering this activities" haveFooter>
                                             <template #main>
-                                                <WithAccentBorder class="mt-4" v-if="props.questions.length == 0" label="No Students"/>
-                                                <inner-table :items="props.students_answer" edit_link="view-student" :edit_link_with_request="{selected_activity_id: props.selected_activities.id}"/>
-                                                <a :href="route('activities-result.result', props.selected_activities.id)"  class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Export Excel</a>
+                                                <WithAccentBorder class="my-4" v-if="props.questions.length == 0" label="No Students"/>
+                                                <inner-table v-if="props.students_answer.length != 0" :items="props.students_answer" edit_link="view-student" :edit_link_with_request="{selected_activity_id: props.selected_activities.id}"/>
+                                                <WithDashBorder v-else label="No Student taken this quizz"/>
+                                                <a v-if="props.students_answer.length != 0" :href="route('activities-result.result', props.selected_activities.id)"  class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Export Excel</a>
                                             </template>
                                         </form-description>
                                 </TabPanel>
