@@ -24,11 +24,12 @@ class QAEController extends Controller
                 return redirect()->route('modules.edit', $request->module_id)->with('warning', 'This schedule is Invalid');
             }else{
                 $module = Modules::find($request->module_id);
+                $checkAdmin = Gate::allows('manage_teacher') == true ? auth()->user()->teacherSubject->id :  null;
                 $module->activities()->create([
                     'title' => $request->title,
                     'start' => $request->dates[0],
                     'due' => $request->dates[1],
-                    'section_id' => $request->isCentrilized == true ? auth()->user()->teacherSubject->id : null
+                    'section_id' => $request->isCentrilized == true ? null : $checkAdmin
                 ]);
                 return redirect()->route('modules.edit', $request->module_id)->with('success', 'Successfully creating new Activities');
             }

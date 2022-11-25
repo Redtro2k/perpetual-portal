@@ -14,7 +14,7 @@
                     enter-from="-translate-x-full" enter-to="translate-x-0"
                     leave="transition ease-in-out duration-300 transform" leave-from="translate-x-0"
                     leave-to="-translate-x-full">
-                    <div class="relative max-w-xs w-full bg-indigo-700 pt-5 pb-4 flex-1 flex flex-col">
+                    <div class="relative max-w-xs w-full bg-jvdgreen pt-5 pb-4 flex-1 flex flex-col">
                         <TransitionChild as="template" enter="ease-in-out duration-300" enter-from="opacity-0"
                             enter-to="opacity-100" leave="ease-in-out duration-300" leave-from="opacity-100"
                             leave-to="opacity-0">
@@ -35,10 +35,10 @@
                             <nav class="h-full flex flex-col">
                                 <div class="space-y-1">
                                     <a v-for="item in navigation" :key="item.name" :href="item.href"
-                                        :class="[item.current ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-800 hover:text-white', 'group py-2 px-3 rounded-md flex items-center text-sm font-medium']"
+                                        :class="[item.current ? 'bg-jvdgreen text-white' : 'text-indigo-100 hover:bg-jvdgreen hover:text-white', 'group py-2 px-3 rounded-md flex items-center text-sm font-medium']"
                                         :aria-current="item.current ? 'page' : undefined">
                                         <component :is="item.icon"
-                                            :class="[item.current ? 'text-white' : 'text-indigo-300 group-hover:text-white', 'mr-3 h-6 w-6']"
+                                            :class="[item.current ? 'text-white' : 'text-jvgreen group-hover:text-white', 'mr-3 h-6 w-6']"
                                             aria-hidden="true" />
                                         <span>{{ item.name }}</span>
                                     </a>
@@ -86,7 +86,7 @@
                             <Menu as="div" class="relative flex-shrink-0">
                                 <div>
                                     <MenuButton
-                                        class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen">
                                         <span class="sr-only">Open user menu</span>
                                         <img class="h-8 w-8 rounded-full"
                                             :src="$page.props.user.profile_photo_url"
@@ -123,12 +123,12 @@
                             <h1 class="flex-1 text-2xl font-bold text-gray-900">Find People</h1>
                             <div class="ml-6 bg-gray-100 p-0.5 rounded-lg flex items-center sm:hidden">
                                 <button type="button"
-                                    class="p-1.5 rounded-md text-gray-400 hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    class="p-1.5 rounded-md text-gray-400 hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-inset focus:ring-jvgreen">
                                     <ViewListIcon class="h-5 w-5" aria-hidden="true" />
                                     <span class="sr-only">Use list view</span>
                                 </button>
                                 <button type="button"
-                                    class="ml-0.5 bg-white p-1.5 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    class="ml-0.5 bg-white p-1.5 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-jvgreen">
                                     <ViewGridIconSolid class="h-5 w-5" aria-hidden="true" />
                                     <span class="sr-only">Use grid view</span>
                                 </button>
@@ -141,7 +141,7 @@
                                 <label for="tabs" class="sr-only">Select a tab</label>
                                 <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
                                 <select id="tabs" name="tabs"
-                                    class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-jvgreen focus:border-jvgreen sm:text-sm rounded-md">
                                     <option selected="">Recently Viewed</option>
                                 </select>
                             </div>
@@ -150,18 +150,18 @@
                                     <nav class="flex-1 -mb-px flex space-x-6 xl:space-x-8" aria-label="Tabs">
                                         <a v-for="tab in tabs" :key="tab.name" :href="tab.href"
                                             :aria-current="tab.current ? 'page' : undefined"
-                                            :class="[tab.current ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm']">
+                                            :class="[tab.current ? 'border-jvgreen text-jvdgreen' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm']">
                                             {{ tab.name }}
                                         </a>
                                     </nav>
                                     <div class="hidden ml-6 bg-gray-100 p-0.5 rounded-lg items-center sm:flex">
                                         <button type="button"
-                                            class="p-1.5 rounded-md text-gray-400 hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                            class="p-1.5 rounded-md text-gray-400 hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-inset focus:ring-jvgreen">
                                             <ViewListIcon class="h-5 w-5" aria-hidden="true" />
                                             <span class="sr-only">Use list view</span>
                                         </button>
                                         <button type="button"
-                                            class="ml-0.5 bg-white p-1.5 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                            class="ml-0.5 bg-white p-1.5 rounded-md shadow-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-jvgreen">
                                             <ViewGridIconSolid class="h-5 w-5" aria-hidden="true" />
                                             <span class="sr-only">Use grid view</span>
                                         </button>
@@ -178,7 +178,7 @@
                                 <li v-for="user in props.users.data" :key="user.name" class="relative">
                                     <Link :href="route('find-people', user.id)">
                                     <div
-                                        :class="[props.current_user != null && props.current_user.id == user.id ? 'ring-2 ring-offset-2 ring-indigo-500' : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500', 'group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden']">
+                                        :class="[props.current_user != null && props.current_user.id == user.id ? 'ring-2 ring-offset-2 ring-jvgreen' : 'focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-jvgreen', 'group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 overflow-hidden']">
                                         <img :src="user.image" alt=""
                                             :class="[props.current_user != null && props.current_user.id == user.id ? '' : 'group-hover:opacity-75', 'object-cover pointer-events-none']" />
                                         <button type="button" class="absolute inset-0 focus:outline-none">
@@ -218,7 +218,7 @@
                                     <p class="text-sm font-medium text-gray-500" v-if="props.current_user != null">{{ current_user.roles[0].name }}</p>
                                 </div>
                                 <button type="button"
-                                    class="ml-4 bg-white rounded-full h-8 w-8 flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    class="ml-4 bg-white rounded-full h-8 w-8 flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-jvgreen">
                                     <HeartIcon class="h-6 w-6" aria-hidden="true" />
                                     <span class="sr-only">Favorite</span>
                                 </button>
@@ -237,8 +237,8 @@
                         <!-- {find_user?}/{selected_user?} -->
                         <!-- ['find_user' => props.current_user.id, 'selected_user' => true]// -->
                         <div class="flex">
-                            <Link :href="props.current_user != null ? `/create-conversation/${props.current_user.id}/${true}` : route('inbox')"  class="flex-1 text-center bg-indigo-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Compose</Link>
-                            <Link :href="route('find-people')" class="flex-1 ml-3 text-center bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reset</Link>
+                            <Link :href="props.current_user != null ? `/create-conversation/${props.current_user.id}/${true}` : route('inbox')"  class="flex-1 text-center bg-jvdgreen py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-jvdgreen focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen">Compose</Link>
+                            <Link :href="route('find-people')" class="flex-1 ml-3 text-center bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-jvgreen">Reset</Link>
                         </div>
                     </div>
                 </aside>

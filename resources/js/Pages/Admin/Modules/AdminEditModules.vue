@@ -230,7 +230,7 @@ let submit = () => {
                                                         </template>
                                                     </form-slot>
                                                 </div>
-                                                    <Radio v-show="$page.props.can.manage_teacher" class="pt-4" label="Not Centralized" body="If you turn on it will post only to your handle sections, but for now it set default on not centralized" v-model="qae.isCentrilized" />
+                                                    <Radio v-show="$page.props.can.manage_teacher" class="pt-4" :label="qae.isCentrilized == true ? 'Centralized' : 'Not Centralized'" body="This option's default will be set into not centralized, clicking the toggle button will be allowing your post to be shown globally." v-model="qae.isCentrilized" />
                                             </template>
                                             <template #footer>
                                                 <JetButton class="ml-4" :class="{ 'opacity-25': qae.processing }"
@@ -244,7 +244,7 @@ let submit = () => {
                                     :haveFooter="$page.props.can.admin_or_superadmin || $page.props.can.manage_teacher"
                                     >
                                         <template #main>
-                                            <WithRight v-if="!$page.props.can.admin_or_superadmin" class="my-2" label="all of quizzes created by admin are not view to our student, we need to repost it, just click edit and go option, then add schedule. "/>
+                                            <WithRight v-if="!$page.props.can.admin_or_superadmin" class="my-2" label="Quizzes that are created by the admin will only be shown to the teachers. The teacher will have the privilege to repost and give the quizzes to their students, they are in charge on setting up the deployment date and deadline. "/>
                                             <template v-if="props.activities != 0">
                                                  <inner-table v-if="$page.props.can.admin_or_superadmin || $page.props.can.manage_teacher"
                                                 :items="props.activities" edit_link="qae.destroy"
