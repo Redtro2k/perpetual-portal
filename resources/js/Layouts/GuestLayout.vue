@@ -426,13 +426,13 @@
   });
 
   const resources = [
-    {
-      name: "About Us",
-      description:
-        "Get all of your questions answered in our forums or contact support.",
-      href: route('about'),
-      icon: SupportIcon,
-    },
+    // {
+    //   name: "About Us",
+    //   description:
+    //     "Get all of your questions answered in our forums or contact support.",
+    //   href: route('about'),
+    //   icon: SupportIcon,
+    // },
     {
       name: "Contact",
       description:

@@ -21,6 +21,7 @@ class DashboardController extends Controller
             'description' => $page->description,
             'audience' => $page->audience,
             'post_created_at' => $page->created_at,
+            'post_photo' => $page->getFirstMediaUrl('posts'),
             'comments' => $page->comment->count(),
             'like' => $page->like->map(fn($l) => [
                 'like_id' => $l->id,

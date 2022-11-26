@@ -12,7 +12,7 @@ trait AllActivitiesTraits
         return $activities->questionAnswer->map(fn ($m) => [
             'id' => $m->id,
             'question' => $m->question,
-            'choices' => implode(', ', $m->answer),
+            'choices' => $m->answer,
             'correct_answer' => $m->correct_answer
         ]);
     }

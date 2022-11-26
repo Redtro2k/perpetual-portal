@@ -37,7 +37,13 @@
                 <p class="mt-2 text-sm text-gray-500">Brief description of your Post. URLs are hyperlinked.</p>
                 <div v-if="form.errors.description" v-text="form.errors.description" class="text-red-500 text-xs mt-1"></div>
                 </div>
-
+                <div>
+                    <WithRight label="if your post contain an Images, upload only One"/>
+                 <div class="py-4">
+                    <small class="block font-semibold">Upload Photo</small>
+                    <input type="file" @input="form.photo = $event.target.files[0]"/>
+                 </div>
+                </div>
                 <fieldset>
               <legend class="contents text-base font-medium text-gray-900">Post Privacy</legend>
               <p class="text-sm text-gray-500">These are setting to filter who will see your post.</p>
@@ -86,7 +92,8 @@ const privacies =[
 const form = useForm({
     title: null,
     description: null,
-    audience: null
+    audience: null,
+    photo: []
 })
 
 let submit = () => {

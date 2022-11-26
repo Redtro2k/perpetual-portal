@@ -24,14 +24,18 @@ class PostController extends Controller
         //
         $attribute = $request->validated();
         if($attribute){
-            User::find(auth()->user()->id)->posts()->create(
+            $user = User::find(auth()->user()->id);
+            $attr = $user->posts()->create(
                 [
                     'title' => $attribute['title'],
                     'description' => $attribute['description'],
                     'audience' => $attribute['audience'],
                     'post_token' => Str::random(30)
                 ]
-            );
+                );
+            if($request->hasFile('photo') && $request->file('photo')){
+                $attr->addMediaFromRequest('photo')->withResponsiveImages()->toMediaCollection('posts');
+            }
             return redirect()->route('dashboard');
         }
         else{

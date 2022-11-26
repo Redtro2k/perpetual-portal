@@ -150,10 +150,10 @@ const getName = (name, birthdate, isMonth = false) => {
     var l_name = value[2] ? name.substr(name.indexOf(' ') + 1) : ''
     var getNameMonth = moment(birthdate).format('ll').split(" ")
     return isMonth == true
-    ? value[0].charAt(0) + value[2].charAt(0) + value[1] + '000' +getNameMonth[0] + moment(birthdate).format('Y')
-    : value[0].charAt(0) + value[2].charAt(0) + value[1] + '000' + moment(birthdate).format('Y');
+    ? value[0].charAt(0) + value[2].charAt(0) + value[1] + '0'+ moment(birthdate).format('d') +getNameMonth[0] + moment(birthdate).format('Y')
+    : value[0].charAt(0) + value[2].charAt(0) + value[1] + '0' + moment(birthdate).format('d') + moment(birthdate).format('Y');
 }
-watch(() => [firstname.value, middlename.value, lastname.value], (names) => {
+watch(() => [firstname.value.replace(/\s/g, ''), middlename.value.replace(/\s/g, ''), lastname.value.replace(/\s/g, '')], (names) => {
     const name = names.join(" ")
     const trim = name.split(" ")
     form.firstname = trim[0];

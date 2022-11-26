@@ -135,6 +135,7 @@
                       class="mt-2 text-sm text-gray-700 space-y-4"
                       v-html="post.description"
                     />
+                    <img v-show="post.post_photo" class="w-full" :src="post.post_photo"/>
                     <div class="mt-6 flex justify-between space-x-8">
                       <div class="flex space-x-6">
                         <span class="inline-flex items-center text-sm">

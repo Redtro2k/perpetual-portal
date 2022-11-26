@@ -46,7 +46,7 @@ class QAEController extends Controller
         foreach($request->questions as $key => $item){
             $getId->questionAnswer()->create([
                 'question' => $item['question'],
-                'answer' =>  [$item['choices']],
+                'answer' =>  $item['choices'],
                 'correct_answer' => $item['correct_answer'],
             ]);
         }

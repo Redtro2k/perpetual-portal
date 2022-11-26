@@ -84,6 +84,11 @@ let enableSave = () => {
     })
 }
 
+let trueOrFalse = () => {
+    form.answer.push('true');
+    form.answer.push('false');
+}
+
 
 let submit = () => {
     form.post(route('question-answer.store'), {
@@ -119,7 +124,7 @@ let submit = () => {
                                                     : 'text-gray-400 group-hover:text-gray-500',
                                                 'flex-shrink-0 -ml-1 mr-3 h-6 w-6',
                                             ]" />
-                                            Multiple Choices
+                                            Multiple Choices / True or False
                                         </button>
                                     </Tab>
                                     <Tab as="template" v-slot="{ selected }">
@@ -209,6 +214,8 @@ let submit = () => {
                                                 </div>
                                                 <radio-button :items="form.answer" v-model="form.correct_answer"
                                                     label="Note" description="Select which is the correct answer?" />
+                                                    <button-primary v-show="!form.answer.includes('true') && !form.answer.includes('false')" label="true or false" @click="trueOrFalse" />
+
                                             </template>
                                             <template #footer>
                                                 <div class="flex justify-between">

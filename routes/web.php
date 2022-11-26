@@ -44,6 +44,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::resource('/post', PostController::class, ['only' => ['store', 'destroy']]);
     Route::resource('/comment', CommentController::class, ['only' => ['show', 'destroy', 'index', 'store']]);
     Route::resource('/school', SchoolController::class, ['except' => ['show']]);
+    Route::post('/dashboard-post', [DashboardController::class, 'sendPostNotification']);
+
 
     Route::middleware('can:manage_superadmin_or_admin')->group(function () {
         //invokeable
