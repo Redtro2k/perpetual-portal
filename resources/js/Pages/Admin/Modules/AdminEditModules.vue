@@ -33,10 +33,10 @@ const form = useForm({
 });
 
 const options = [
-    { id: 1, name: 'prelim' },
-    { id: 2, name: 'midterm' },
-    { id: 3, name: 'prefinal' },
-    { id: 4, name: 'final' },
+    { id: 1, name: '1st Grading' },
+    { id: 2, name: '2nd Grading' },
+    { id: 3, name: '3rd Grading' },
+    { id: 4, name: '4th Grading' },
 ];
 const files = useForm({
     id: props.selected.id,
