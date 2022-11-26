@@ -142,7 +142,7 @@ const clearPhotoFileInput = () => {
             </div>
 
             <!-- Email -->
-            <div class="col-span-6 sm:col-span-4">
+            <div v-show="false" class="col-span-6 sm:col-span-4">
                 <JetLabel for="email" value="Email" />
                 <JetInput
                     id="email"

@@ -121,7 +121,6 @@ const gender = [
 const firstname = ref("");
 const middlename = ref("");
 const lastname = ref("");
-
 const form = useForm({
     name: firstname.value + middlename.value + lastname.value,
     firstname: "",
@@ -134,6 +133,7 @@ const form = useForm({
     gender: "",
     roles: ""
 });
+
 let submit = () => {
     form.post(route('new-account.store'), {
         preserveScroll: true,
@@ -153,15 +153,21 @@ const getName = (name, birthdate, isMonth = false) => {
     ? value[0].charAt(0) + value[2].charAt(0) + value[1] + '0'+ moment(birthdate).format('d') +getNameMonth[0] + moment(birthdate).format('Y')
     : value[0].charAt(0) + value[2].charAt(0) + value[1] + '0' + moment(birthdate).format('d') + moment(birthdate).format('Y');
 }
-watch(() => [firstname.value.replace(/\s/g, ''), middlename.value.replace(/\s/g, ''), lastname.value.replace(/\s/g, '')], (names) => {
-    const name = names.join(" ")
-    const trim = name.split(" ")
-    form.firstname = trim[0];
-    form.lastname = trim[2];
-    form.middlename = trim[1];
-    form.name = trim[0] + " " + trim[2] + " " + trim[1]
-    form.username = getName(name.toString(), form.birthdate)
-    form.password = getName(name.toString(), form.birthdate, true)
-    form.email = getName(name.toString(), form.birthdate)  + "@perpetual.com"
+// .replace(/\s/g, '')
+watch(() => [firstname.value, middlename.value, lastname.value], (names) => {
+    form.name = names[0] + " " + names[2] + " " + names[1]
+    form.firstname = names[0]
+    form.middlename = names[1]
+    form.lastname = names[2]
+
+    const initialFirstName = names[0].replace(/\s/g, '')
+    const initiaMiddleName = names[1].replace(/\s/g, '')
+    const initialLastname = names[2].replace(/\s/g, '')
+    const ini_name = initialFirstName + " " + initialLastname + " " + initiaMiddleName
+    const trim = ini_name.split(" ")
+    const fullname = trim[0] + " " + trim[2] + " " + trim[1]
+    form.username = getName(fullname.toString(), form.birthdate)
+    form.password = getName(fullname.toString(), form.birthdate, true)
+    form.email = getName(fullname.toString(), form.birthdate)  + "@perpetual.com"
 })
 </script>
